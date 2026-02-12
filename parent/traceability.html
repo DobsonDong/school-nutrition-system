@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>食材溯源 - 智慧营养膳食</title>
+    <link rel="stylesheet" href="../shared/css/common.css">
+    <style>
+        body { background: #f5f5f5; }
+        .mobile-container { max-width: 480px; margin: 0 auto; background: #f5f5f5; min-height: 100vh; position: relative; padding-bottom: 80px; }
+        .mobile-header { background: white; padding: 16px; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .mobile-header-content { display: flex; align-items: center; gap: 12px; }
+        .back-btn { width: 36px; height: 36px; border-radius: 50%; background: #f3f4f6; display: flex; align-items: center; justify-content: center; border: none; font-size: 18px; }
+        .mobile-header-title { font-size: 18px; font-weight: 600; flex: 1; }
+        .mobile-content { padding: 16px; }
+        .scan-card { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 16px; padding: 24px; color: white; text-align: center; margin-bottom: 16px; }
+        .scan-icon { width: 72px; height: 72px; background: rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 36px; margin: 0 auto 12px; }
+        .scan-title { font-size: 16px; font-weight: 600; margin-bottom: 4px; }
+        .scan-desc { font-size: 13px; opacity: 0.9; }
+        .search-bar { background: white; border-radius: 12px; padding: 12px; display: flex; gap: 8px; margin-bottom: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        .search-bar input { flex: 1; border: none; outline: none; font-size: 14px; }
+        .search-btn { background: #667eea; color: white; border: none; border-radius: 8px; padding: 8px 16px; font-size: 13px; font-weight: 500; }
+        .trace-card { background: white; border-radius: 16px; overflow: hidden; margin-bottom: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        .trace-header { padding: 16px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid #f3f4f6; }
+        .trace-icon { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 24px; }
+        .trace-title { font-size: 16px; font-weight: 600; }
+        .trace-sub { font-size: 12px; color: #6b7280; margin-top: 2px; }
+        .trace-body { padding: 16px; }
+        .trace-timeline { position: relative; padding-left: 28px; }
+        .trace-timeline::before { content: ''; position: absolute; left: 10px; top: 8px; bottom: 8px; width: 2px; background: #e5e7eb; }
+        .timeline-item { position: relative; margin-bottom: 20px; }
+        .timeline-item:last-child { margin-bottom: 0; }
+        .timeline-dot { position: absolute; left: -24px; top: 4px; width: 14px; height: 14px; border-radius: 50%; border: 2px solid white; }
+        .timeline-dot.green { background: #22c55e; box-shadow: 0 0 0 3px #d1fae5; }
+        .timeline-dot.blue { background: #3b82f6; box-shadow: 0 0 0 3px #dbeafe; }
+        .timeline-dot.orange { background: #f59e0b; box-shadow: 0 0 0 3px #fef3c7; }
+        .timeline-dot.purple { background: #8b5cf6; box-shadow: 0 0 0 3px #f3e8ff; }
+        .timeline-title { font-size: 14px; font-weight: 600; color: #111827; }
+        .timeline-desc { font-size: 13px; color: #6b7280; margin-top: 4px; line-height: 1.5; }
+        .timeline-time { font-size: 11px; color: #9ca3af; margin-top: 4px; }
+        .cert-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 12px; }
+        .cert-item { background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 10px; padding: 12px; text-align: center; }
+        .cert-icon { font-size: 24px; margin-bottom: 4px; }
+        .cert-name { font-size: 12px; font-weight: 500; color: #166534; }
+        .cert-status { font-size: 11px; color: #15803d; margin-top: 2px; }
+        .info-row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #f3f4f6; font-size: 13px; }
+        .info-row:last-child { border-bottom: none; }
+        .info-label { color: #6b7280; }
+        .info-value { color: #111827; font-weight: 500; }
+        .safety-badge { display: inline-flex; align-items: center; gap: 6px; background: #d1fae5; color: #065f46; border-radius: 20px; padding: 8px 16px; font-size: 13px; font-weight: 500; }
+        .bottom-nav { position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 480px; background: white; display: flex; justify-content: space-around; padding: 8px 0; box-shadow: 0 -2px 10px rgba(0,0,0,0.08); z-index: 100; }
+        .bottom-nav-item { flex: 1; text-align: center; padding: 8px; color: #9ca3af; text-decoration: none; }
+        .bottom-nav-item.active { color: #667eea; }
+        .bottom-nav-icon { font-size: 24px; display: block; margin-bottom: 2px; }
+        .bottom-nav-label { font-size: 11px; }
+    </style>
+</head>
+<body>
+    <div class="mobile-container">
+        <!-- 头部 -->
+        <header class="mobile-header">
+            <div class="mobile-header-content">
+                <button class="back-btn" onclick="history.back()">←</button>
+                <div class="mobile-header-title">食材溯源</div>
+            </div>
+        </header>
+
+        <!-- 内容 -->
+        <div class="mobile-content">
+            <!-- 扫码入口 -->
+            <div class="scan-card">
+                <div class="scan-icon">📷</div>
+                <div class="scan-title">扫码查溯源</div>
+                <div class="scan-desc">扫描餐盘上的二维码，查看今日食材来源</div>
+            </div>
+
+            <!-- 搜索栏 -->
+            <div class="search-bar">
+                <span>🔍</span>
+                <input type="text" placeholder="搜索食材名称或批次号..." value="红烧鸡腿">
+                <button class="search-btn">查询</button>
+            </div>
+
+            <!-- 溯源信息卡片 -->
+            <div class="trace-card">
+                <div class="trace-header">
+                    <div class="trace-icon" style="background:#fee2e2;">🍗</div>
+                    <div>
+                        <div class="trace-title">红烧鸡腿 - 食材溯源</div>
+                        <div class="trace-sub">批次号: SY20240115-001 | 今日午餐</div>
+                    </div>
+                </div>
+                <div class="trace-body">
+                    <!-- 安全标识 -->
+                    <div style="text-align:center;margin-bottom:16px;">
+                        <div class="safety-badge">✅ 食材安全检测合格</div>
+                    </div>
+
+                    <!-- 基本信息 -->
+                    <div style="margin-bottom:16px;">
+                        <div style="font-size:14px;font-weight:600;margin-bottom:8px;">📋 基本信息</div>
+                        <div class="info-row">
+                            <span class="info-label">主要食材</span>
+                            <span class="info-value">鸡腿、酱油、糖、葱姜蒜</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">供应商</span>
+                            <span class="info-value">阳光禽业有限公司</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">产地</span>
+                            <span class="info-value">山东省临沂市</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">配送日期</span>
+                            <span class="info-value">2024年1月15日 06:00</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">保质期</span>
+                            <span class="info-value">冷鲜鸡腿 3天 (冷链)</span>
+                        </div>
+                    </div>
+
+                    <!-- 溯源时间线 -->
+                    <div style="font-size:14px;font-weight:600;margin-bottom:12px;">🔗 溯源链路</div>
+                    <div class="trace-timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-dot green"></div>
+                            <div class="timeline-title">🍽️ 学校食堂烹饪</div>
+                            <div class="timeline-desc">实验小学食堂厨师张师傅烹饪<br>烹饪方式: 红烧 | 出餐温度: 75°C</div>
+                            <div class="timeline-time">2024-01-15 10:30</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot blue"></div>
+                            <div class="timeline-title">🔍 入库检测</div>
+                            <div class="timeline-desc">食材验收合格，感官检测通过<br>检测员: 王检测员 | 温度: 2°C</div>
+                            <div class="timeline-time">2024-01-15 06:15</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot orange"></div>
+                            <div class="timeline-title">🚛 冷链配送</div>
+                            <div class="timeline-desc">冷链车编号: 沪A12345<br>全程温度: 0-4°C | 运输距离: 35km</div>
+                            <div class="timeline-time">2024-01-15 05:00 - 06:00</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot purple"></div>
+                            <div class="timeline-title">🏭 屠宰加工</div>
+                            <div class="timeline-desc">阳光禽业加工厂<br>检疫证号: LY20240114-0523</div>
+                            <div class="timeline-time">2024-01-14 14:00</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot green"></div>
+                            <div class="timeline-title">🌾 养殖基地</div>
+                            <div class="timeline-desc">山东临沂阳光养殖基地<br>散养鸡 | 养殖周期: 120天 | 无抗养殖</div>
+                            <div class="timeline-time">2023-09 - 2024-01</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 检测资质 -->
+            <div class="trace-card">
+                <div class="trace-header">
+                    <div class="trace-icon" style="background:#dbeafe;">📜</div>
+                    <div>
+                        <div class="trace-title">检测与资质</div>
+                        <div class="trace-sub">供应商相关证照与检测报告</div>
+                    </div>
+                </div>
+                <div class="trace-body">
+                    <div class="cert-grid">
+                        <div class="cert-item">
+                            <div class="cert-icon">📋</div>
+                            <div class="cert-name">动物检疫合格证</div>
+                            <div class="cert-status">✅ 有效期内</div>
+                        </div>
+                        <div class="cert-item">
+                            <div class="cert-icon">🏭</div>
+                            <div class="cert-name">食品经营许可证</div>
+                            <div class="cert-status">✅ 有效期内</div>
+                        </div>
+                        <div class="cert-item">
+                            <div class="cert-icon">🔬</div>
+                            <div class="cert-name">农药残留检测</div>
+                            <div class="cert-status">✅ 合格</div>
+                        </div>
+                        <div class="cert-item">
+                            <div class="cert-icon">🧪</div>
+                            <div class="cert-name">兽药残留检测</div>
+                            <div class="cert-status">✅ 合格</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 今日其他食材 -->
+            <div style="font-size:14px;font-weight:600;margin-bottom:12px;">📦 今日其他食材溯源</div>
+            <div style="display:flex;gap:10px;overflow-x:auto;padding-bottom:8px;">
+                <div style="min-width:100px;background:white;border-radius:12px;padding:14px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,0.05);">
+                    <div style="font-size:28px;margin-bottom:6px;">🍚</div>
+                    <div style="font-size:13px;font-weight:500;">杂粮饭</div>
+                    <div style="font-size:11px;color:#22c55e;margin-top:4px;">✅ 已溯源</div>
+                </div>
+                <div style="min-width:100px;background:white;border-radius:12px;padding:14px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,0.05);">
+                    <div style="font-size:28px;margin-bottom:6px;">🥬</div>
+                    <div style="font-size:13px;font-weight:500;">清炒时蔬</div>
+                    <div style="font-size:11px;color:#22c55e;margin-top:4px;">✅ 已溯源</div>
+                </div>
+                <div style="min-width:100px;background:white;border-radius:12px;padding:14px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,0.05);">
+                    <div style="font-size:28px;margin-bottom:6px;">🍲</div>
+                    <div style="font-size:13px;font-weight:500;">紫菜蛋花汤</div>
+                    <div style="font-size:11px;color:#22c55e;margin-top:4px;">✅ 已溯源</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 底部导航 -->
+        <nav class="bottom-nav">
+            <a href="index.html" class="bottom-nav-item">
+                <span class="bottom-nav-icon">🏠</span>
+                <span class="bottom-nav-label">首页</span>
+            </a>
+            <a href="order.html" class="bottom-nav-item">
+                <span class="bottom-nav-icon">🛒</span>
+                <span class="bottom-nav-label">点餐</span>
+            </a>
+            <a href="satisfaction.html" class="bottom-nav-item">
+                <span class="bottom-nav-icon">⭐</span>
+                <span class="bottom-nav-label">评价</span>
+            </a>
+            <a href="nutrition-report.html" class="bottom-nav-item">
+                <span class="bottom-nav-icon">📊</span>
+                <span class="bottom-nav-label">报告</span>
+            </a>
+        </nav>
+    </div>
+</body>
+</html>

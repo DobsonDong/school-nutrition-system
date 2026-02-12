@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>学生就餐数据监管 - 中小学带量食谱系统</title>
+    <link rel="stylesheet" href="../shared/css/common.css">
+</head>
+<body>
+    <div class="layout">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <div class="logo-icon">🍱</div>
+                    <div>
+                        <div class="logo-text">智慧营养膳食平台</div>
+                        <div class="logo-subtext">教育局端</div>
+                    </div>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <div class="nav-section-title">数据监管</div>
+                    <a href="dashboard.html" class="nav-item"><span class="nav-item-icon">📊</span>数据驾驶舱</a>
+                    <a href="dining-data.html" class="nav-item active"><span class="nav-item-icon">🍽️</span>学生就餐数据监管</a>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-title">内容管理</div>
+                    <a href="dish-library.html" class="nav-item"><span class="nav-item-icon">🥗</span>公共菜肴库管理</a>
+                    <a href="recipe-template.html" class="nav-item"><span class="nav-item-icon">📋</span>公共周食谱模板</a>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-title">监测预警</div>
+                    <a href="warning-monitor.html" class="nav-item"><span class="nav-item-icon">⚠️</span>营养监测预警<span class="nav-item-badge">5</span></a>
+                </div>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="top-header">
+                <div class="header-left">
+                    <div class="breadcrumb">
+                        <a href="dashboard.html">首页</a>
+                        <span class="breadcrumb-separator">/</span>
+                        <span>学生就餐数据监管</span>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <button class="header-btn">🔔</button>
+                    <button class="header-btn">⚙️</button>
+                    <div class="user-menu">
+                        <div class="user-avatar">张</div>
+                        <div class="user-info">
+                            <div class="user-name">张管理员</div>
+                            <div class="user-role">教育局营养科</div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="page-content">
+                <div class="page-header">
+                    <h1 class="page-title">学生就餐数据监管</h1>
+                    <p class="page-subtitle">实时监管辖区学校就餐率、剩餐率，关注特殊群体就餐情况</p>
+                </div>
+
+                <div class="grid grid-4" style="margin-bottom:24px;">
+                    <div class="stat-card">
+                        <div class="stat-icon blue">🍽️</div>
+                        <div class="stat-content">
+                            <div class="stat-label">今日就餐人次</div>
+                            <div class="stat-value">11.2万</div>
+                            <div class="stat-change up"><span>↑</span><span>就餐率 87.5%</span></div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon green">✅</div>
+                        <div class="stat-content">
+                            <div class="stat-label">平均就餐率</div>
+                            <div class="stat-value">87.5%</div>
+                            <div class="stat-change up"><span>↑</span><span>较上周 +2.3%</span></div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon orange">🗑️</div>
+                        <div class="stat-content">
+                            <div class="stat-label">平均剩餐率</div>
+                            <div class="stat-value">12.3%</div>
+                            <div class="stat-change down"><span>↓</span><span>较上周 -1.5%</span></div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon purple">💰</div>
+                        <div class="stat-content">
+                            <div class="stat-label">贫困生补贴使用</div>
+                            <div class="stat-value">98.2%</div>
+                            <div class="stat-change"><span>2,847人受益</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-2" style="margin-bottom:24px;">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">📈 近7天就餐率趋势</div>
+                            <select class="form-select" style="width:120px;">
+                                <option>全部学校</option>
+                                <option>小学</option>
+                                <option>初中</option>
+                                <option>高中</option>
+                            </select>
+                        </div>
+                        <div class="card-body" style="padding:20px;">
+                            <div style="display:flex;align-items:flex-end;gap:12px;height:200px;padding:0 8px;">
+                                <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;">
+                                    <div style="font-size:11px;font-weight:600;color:#22c55e;">85%</div>
+                                    <div style="width:100%;height:85%;background:linear-gradient(180deg,#3b82f6,#93c5fd);border-radius:4px 4px 0 0;"></div>
+                                    <div style="font-size:11px;color:#6b7280;">周一</div>
+                                </div>
+                                <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;">
+                                    <div style="font-size:11px;font-weight:600;color:#22c55e;">87%</div>
+                                    <div style="width:100%;height:87%;background:linear-gradient(180deg,#3b82f6,#93c5fd);border-radius:4px 4px 0 0;"></div>
+                                    <div style="font-size:11px;color:#6b7280;">周二</div>
+                                </div>
+                                <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;">
+                                    <div style="font-size:11px;font-weight:600;color:#22c55e;">86%</div>
+                                    <div style="width:100%;height:86%;background:linear-gradient(180deg,#3b82f6,#93c5fd);border-radius:4px 4px 0 0;"></div>
+                                    <div style="font-size:11px;color:#6b7280;">周三</div>
+                                </div>
+                                <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;">
+                                    <div style="font-size:11px;font-weight:600;color:#22c55e;">88%</div>
+                                    <div style="width:100%;height:88%;background:linear-gradient(180deg,#3b82f6,#93c5fd);border-radius:4px 4px 0 0;"></div>
+                                    <div style="font-size:11px;color:#6b7280;">周四</div>
+                                </div>
+                                <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;">
+                                    <div style="font-size:11px;font-weight:600;color:#22c55e;">89%</div>
+                                    <div style="width:100%;height:89%;background:linear-gradient(180deg,#3b82f6,#93c5fd);border-radius:4px 4px 0 0;"></div>
+                                    <div style="font-size:11px;color:#6b7280;">周五</div>
+                                </div>
+                                <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;">
+                                    <div style="font-size:11px;font-weight:600;color:#22c55e;">87%</div>
+                                    <div style="width:100%;height:87%;background:linear-gradient(180deg,#22c55e,#86efac);border-radius:4px 4px 0 0;"></div>
+                                    <div style="font-size:11px;color:#6b7280;">上周六</div>
+                                </div>
+                                <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;">
+                                    <div style="font-size:11px;font-weight:600;color:#3b82f6;">87.5%</div>
+                                    <div style="width:100%;height:87.5%;background:linear-gradient(180deg,#22c55e,#86efac);border-radius:4px 4px 0 0;"></div>
+                                    <div style="font-size:11px;color:#6b7280;">今日</div>
+                                </div>
+                            </div>
+                            <div style="text-align:center;margin-top:8px;font-size:12px;color:#22c55e;">平均就餐率 87.5% ↑</div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">🗑️ 近7天剩餐率趋势</div>
+                            <select class="form-select" style="width:120px;">
+                                <option>全部学校</option>
+                                <option>小学</option>
+                                <option>初中</option>
+                                <option>高中</option>
+                            </select>
+                        </div>
+                        <div class="card-body" style="padding:20px;">
+                            <div style="display:flex;align-items:flex-end;gap:12px;height:200px;padding:0 8px;">
+                                <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;">
+                                    <div style="font-size:11px;font-weight:600;color:#f59e0b;">15%</div>
+                                    <div style="width:100%;height:75%;background:linear-gradient(180deg,#f59e0b,#fcd34d);border-radius:4px 4px 0 0;"></div>
+                                    <div style="font-size:11px;color:#6b7280;">周一</div>
+                                </div>
+                                <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;">
+                                    <div style="font-size:11px;font-weight:600;color:#f59e0b;">14%</div>
+                                    <div style="width:100%;height:70%;background:linear-gradient(180deg,#f59e0b,#fcd34d);border-radius:4px 4px 0 0;"></div>
+                                    <div style="font-size:11px;color:#6b7280;">周二</div>
+                                </div>
+                                <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;">
+                                    <div style="font-size:11px;font-weight:600;color:#f59e0b;">13%</div>
+                                    <div style="width:100%;height:65%;background:linear-gradient(180deg,#f59e0b,#fcd34d);border-radius:4px 4px 0 0;"></div>
+                                    <div style="font-size:11px;color:#6b7280;">周三</div>
+                                </div>
+                                <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;">
+                                    <div style="font-size:11px;font-weight:600;color:#22c55e;">12%</div>
+                                    <div style="width:100%;height:60%;background:linear-gradient(180deg,#22c55e,#86efac);border-radius:4px 4px 0 0;"></div>
+                                    <div style="font-size:11px;color:#6b7280;">周四</div>
+                                </div>
+                                <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;">
+                                    <div style="font-size:11px;font-weight:600;color:#22c55e;">13%</div>
+                                    <div style="width:100%;height:65%;background:linear-gradient(180deg,#22c55e,#86efac);border-radius:4px 4px 0 0;"></div>
+                                    <div style="font-size:11px;color:#6b7280;">周五</div>
+                                </div>
+                                <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;">
+                                    <div style="font-size:11px;font-weight:600;color:#22c55e;">11%</div>
+                                    <div style="width:100%;height:55%;background:linear-gradient(180deg,#22c55e,#86efac);border-radius:4px 4px 0 0;"></div>
+                                    <div style="font-size:11px;color:#6b7280;">上周六</div>
+                                </div>
+                                <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;">
+                                    <div style="font-size:11px;font-weight:600;color:#22c55e;">12.3%</div>
+                                    <div style="width:100%;height:61.5%;background:linear-gradient(180deg,#10b981,#6ee7b7);border-radius:4px 4px 0 0;"></div>
+                                    <div style="font-size:11px;color:#6b7280;">今日</div>
+                                </div>
+                            </div>
+                            <div style="text-align:center;margin-top:8px;font-size:12px;color:#22c55e;">平均剩餐率 12.3% ↓ 持续改善</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">🏫 学校就餐数据排行</div>
+                        <div style="display:flex;gap:12px;">
+                            <select class="form-select" style="width:120px;">
+                                <option>按就餐率</option>
+                                <option>按剩餐率</option>
+                                <option>按就餐人次</option>
+                            </select>
+                            <button class="btn btn-secondary">📤 导出</button>
+                        </div>
+                    </div>
+                    <div class="table-container">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>排名</th>
+                                    <th>学校名称</th>
+                                    <th>学生总数</th>
+                                    <th>今日就餐人次</th>
+                                    <th>就餐率</th>
+                                    <th>剩餐率</th>
+                                    <th>趋势</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><span style="display:inline-block;width:28px;height:28px;background:linear-gradient(135deg,#fbbf24,#f59e0b);border-radius:6px;text-align:center;line-height:28px;font-weight:700;color:white;">1</span></td>
+                                    <td style="font-weight:600;">实验中学</td>
+                                    <td>2,856</td>
+                                    <td>2,612</td>
+                                    <td><span style="color:#22c55e;font-weight:600;">91.5%</span></td>
+                                    <td><span style="color:#22c55e;">8.2%</span></td>
+                                    <td><span style="color:#22c55e;">↑ 上升</span></td>
+                                    <td><button class="btn btn-sm btn-ghost">👁️ 查看</button></td>
+                                </tr>
+                                <tr>
+                                    <td><span style="display:inline-block;width:28px;height:28px;background:linear-gradient(135deg,#94a3b8,#64748b);border-radius:6px;text-align:center;line-height:28px;font-weight:700;color:white;">2</span></td>
+                                    <td style="font-weight:600;">第一小学</td>
+                                    <td>1,524</td>
+                                    <td>1,385</td>
+                                    <td><span style="color:#22c55e;font-weight:600;">90.9%</span></td>
+                                    <td><span style="color:#22c55e;">9.5%</span></td>
+                                    <td><span style="color:#22c55e;">↑ 上升</span></td>
+                                    <td><button class="btn btn-sm btn-ghost">👁️ 查看</button></td>
+                                </tr>
+                                <tr>
+                                    <td><span style="display:inline-block;width:28px;height:28px;background:linear-gradient(135deg,#f87171,#ef4444);border-radius:6px;text-align:center;line-height:28px;font-weight:700;color:white;">3</span></td>
+                                    <td style="font-weight:600;">外国语小学</td>
+                                    <td>1,892</td>
+                                    <td>1,698</td>
+                                    <td><span style="color:#22c55e;font-weight:600;">89.7%</span></td>
+                                    <td><span style="color:#f59e0b;">11.8%</span></td>
+                                    <td><span style="color:#6b7280;">→ 持平</span></td>
+                                    <td><button class="btn btn-sm btn-ghost">👁️ 查看</button></td>
+                                </tr>
+                                <tr>
+                                    <td><span style="display:inline-block;width:28px;height:28px;background:#e5e7eb;border-radius:6px;text-align:center;line-height:28px;font-weight:700;color:#6b7280;">4</span></td>
+                                    <td style="font-weight:600;">实验小学</td>
+                                    <td>2,156</td>
+                                    <td>1,912</td>
+                                    <td><span style="color:#22c55e;font-weight:600;">88.7%</span></td>
+                                    <td><span style="color:#f59e0b;">12.5%</span></td>
+                                    <td><span style="color:#ef4444;">↓ 下降</span></td>
+                                    <td><button class="btn btn-sm btn-ghost">👁️ 查看</button></td>
+                                </tr>
+                                <tr>
+                                    <td><span style="display:inline-block;width:28px;height:28px;background:#e5e7eb;border-radius:6px;text-align:center;line-height:28px;font-weight:700;color:#6b7280;">5</span></td>
+                                    <td style="font-weight:600;">阳光小学</td>
+                                    <td>1,678</td>
+                                    <td>1,445</td>
+                                    <td><span style="color:#f59e0b;font-weight:600;">86.1%</span></td>
+                                    <td><span style="color:#ef4444;">15.2%</span></td>
+                                    <td><span style="color:#ef4444;">↓ 下降</span></td>
+                                    <td><button class="btn btn-sm btn-ghost">👁️ 查看</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="card-footer" style="display:flex;justify-content:space-between;align-items:center;">
+                        <div style="font-size:13px;color:#6b7280;">显示 1-5 条，共 186 条</div>
+                        <div class="pagination">
+                            <button class="page-btn" disabled>←</button>
+                            <button class="page-btn active">1</button>
+                            <button class="page-btn">2</button>
+                            <button class="page-btn">3</button>
+                            <span style="padding:0 8px;">...</span>
+                            <button class="page-btn">38</button>
+                            <button class="page-btn">→</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

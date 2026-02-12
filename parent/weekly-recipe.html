@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>本周食谱 - 智慧营养膳食</title>
+    <link rel="stylesheet" href="../shared/css/common.css">
+    <style>
+        body { background: #f5f5f5; }
+        .mobile-container { max-width: 480px; margin: 0 auto; background: #f5f5f5; min-height: 100vh; position: relative; padding-bottom: 80px; }
+        .mobile-header { background: white; padding: 16px; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .mobile-header-content { display: flex; align-items: center; gap: 12px; }
+        .back-btn { width: 36px; height: 36px; border-radius: 50%; background: #f3f4f6; display: flex; align-items: center; justify-content: center; border: none; font-size: 18px; }
+        .mobile-header-title { font-size: 18px; font-weight: 600; flex: 1; }
+        .mobile-content { padding: 16px; }
+        .week-header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 16px; padding: 20px; color: white; margin-bottom: 16px; display: flex; justify-content: space-between; align-items: center; }
+        .week-title { font-size: 18px; font-weight: 600; }
+        .week-sub { font-size: 13px; opacity: 0.9; margin-top: 4px; }
+        .week-nav { display: flex; gap: 8px; }
+        .week-nav-btn { width: 32px; height: 32px; background: rgba(255,255,255,0.2); border: none; border-radius: 8px; color: white; font-size: 16px; display: flex; align-items: center; justify-content: center; }
+        .day-tabs { display: flex; gap: 6px; margin-bottom: 16px; overflow-x: auto; padding-bottom: 4px; }
+        .day-tab { min-width: 56px; padding: 10px 8px; background: white; border-radius: 12px; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.05); flex-shrink: 0; }
+        .day-tab.active { background: #667eea; color: white; }
+        .day-tab.today { border: 2px solid #667eea; }
+        .day-tab-name { font-size: 12px; }
+        .day-tab-date { font-size: 14px; font-weight: 600; margin-top: 2px; }
+        .meal-section { background: white; border-radius: 16px; overflow: hidden; margin-bottom: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        .meal-header { padding: 14px 16px; font-size: 15px; font-weight: 600; display: flex; align-items: center; gap: 8px; }
+        .meal-header.lunch { background: linear-gradient(135deg, #fef3c7, #fde68a); color: #92400e; }
+        .meal-items { padding: 0 16px 16px; }
+        .meal-item { display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid #f3f4f6; }
+        .meal-item:last-child { border-bottom: none; }
+        .meal-item-icon { width: 44px; height: 44px; background: #f9fafb; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; }
+        .meal-item-info { flex: 1; }
+        .meal-item-name { font-size: 14px; font-weight: 500; }
+        .meal-item-detail { font-size: 12px; color: #6b7280; margin-top: 2px; }
+        .meal-item-weight { font-size: 13px; color: #9ca3af; flex-shrink: 0; }
+        .nutrition-summary { background: white; border-radius: 16px; padding: 16px; margin-bottom: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        .nutrition-title { font-size: 14px; font-weight: 600; margin-bottom: 12px; display: flex; align-items: center; gap: 6px; }
+        .nutrition-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+        .nutrition-cell { background: #f9fafb; border-radius: 10px; padding: 10px; text-align: center; }
+        .nutrition-cell-value { font-size: 16px; font-weight: 700; color: #667eea; }
+        .nutrition-cell-label { font-size: 11px; color: #6b7280; margin-top: 2px; }
+        .nutrition-cell-status { font-size: 10px; margin-top: 2px; }
+        .day-detail-card { background: white; border-radius: 16px; padding: 16px; margin-bottom: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        .day-summary { display: flex; gap: 10px; flex-wrap: wrap; }
+        .day-summary-item { flex: 1; min-width: 90px; background: #f0f9ff; border-radius: 10px; padding: 10px; text-align: center; }
+        .day-summary-value { font-size: 18px; font-weight: 700; color: #1e40af; }
+        .day-summary-label { font-size: 11px; color: #3b82f6; margin-top: 2px; }
+        .bottom-nav { position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 480px; background: white; display: flex; justify-content: space-around; padding: 8px 0; box-shadow: 0 -2px 10px rgba(0,0,0,0.08); z-index: 100; }
+        .bottom-nav-item { flex: 1; text-align: center; padding: 8px; color: #9ca3af; text-decoration: none; }
+        .bottom-nav-item.active { color: #667eea; }
+        .bottom-nav-icon { font-size: 24px; display: block; margin-bottom: 2px; }
+        .bottom-nav-label { font-size: 11px; }
+    </style>
+</head>
+<body>
+    <div class="mobile-container">
+        <!-- 头部 -->
+        <header class="mobile-header">
+            <div class="mobile-header-content">
+                <button class="back-btn" onclick="history.back()">←</button>
+                <div class="mobile-header-title">本周食谱</div>
+            </div>
+        </header>
+
+        <!-- 内容 -->
+        <div class="mobile-content">
+            <!-- 周标题 -->
+            <div class="week-header">
+                <div>
+                    <div class="week-title">第3周食谱</div>
+                    <div class="week-sub">2024年1月15日 - 1月19日</div>
+                </div>
+                <div class="week-nav">
+                    <button class="week-nav-btn">←</button>
+                    <button class="week-nav-btn">→</button>
+                </div>
+            </div>
+
+            <!-- 日期选择 -->
+            <div class="day-tabs">
+                <div class="day-tab active today">
+                    <div class="day-tab-name">周一</div>
+                    <div class="day-tab-date">15</div>
+                </div>
+                <div class="day-tab">
+                    <div class="day-tab-name">周二</div>
+                    <div class="day-tab-date">16</div>
+                </div>
+                <div class="day-tab">
+                    <div class="day-tab-name">周三</div>
+                    <div class="day-tab-date">17</div>
+                </div>
+                <div class="day-tab">
+                    <div class="day-tab-name">周四</div>
+                    <div class="day-tab-date">18</div>
+                </div>
+                <div class="day-tab">
+                    <div class="day-tab-name">周五</div>
+                    <div class="day-tab-date">19</div>
+                </div>
+            </div>
+
+            <!-- 当日营养汇总 -->
+            <div class="day-detail-card">
+                <div class="nutrition-title">📊 当日营养汇总</div>
+                <div class="day-summary">
+                    <div class="day-summary-item">
+                        <div class="day-summary-value">685</div>
+                        <div class="day-summary-label">能量(kcal)</div>
+                    </div>
+                    <div class="day-summary-item">
+                        <div class="day-summary-value">28.5</div>
+                        <div class="day-summary-label">蛋白质(g)</div>
+                    </div>
+                    <div class="day-summary-item">
+                        <div class="day-summary-value">22.5</div>
+                        <div class="day-summary-label">脂肪(g)</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 午餐食谱 -->
+            <div class="meal-section">
+                <div class="meal-header lunch">🍱 午餐</div>
+                <div class="meal-items">
+                    <div class="meal-item">
+                        <div class="meal-item-icon">🍚</div>
+                        <div class="meal-item-info">
+                            <div class="meal-item-name">杂粮饭</div>
+                            <div class="meal-item-detail">🔥 165kcal · 💪 4.2g蛋白质 · 🌾 35g碳水</div>
+                        </div>
+                        <div class="meal-item-weight">150g</div>
+                    </div>
+                    <div class="meal-item">
+                        <div class="meal-item-icon">🍗</div>
+                        <div class="meal-item-info">
+                            <div class="meal-item-name">红烧鸡腿</div>
+                            <div class="meal-item-detail">🔥 185kcal · 💪 18.5g蛋白质 · 🥑 9.2g脂肪</div>
+                        </div>
+                        <div class="meal-item-weight">120g</div>
+                    </div>
+                    <div class="meal-item">
+                        <div class="meal-item-icon">🥬</div>
+                        <div class="meal-item-info">
+                            <div class="meal-item-name">清炒时蔬</div>
+                            <div class="meal-item-detail">🔥 45kcal · 💪 2.1g蛋白质 · 🥗 高纤维</div>
+                        </div>
+                        <div class="meal-item-weight">100g</div>
+                    </div>
+                    <div class="meal-item">
+                        <div class="meal-item-icon">🍲</div>
+                        <div class="meal-item-info">
+                            <div class="meal-item-name">紫菜蛋花汤</div>
+                            <div class="meal-item-detail">🔥 25kcal · 💪 3.2g蛋白质 · 🦴 钙质丰富</div>
+                        </div>
+                        <div class="meal-item-weight">200ml</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 本周营养对比 -->
+            <div class="nutrition-summary">
+                <div class="nutrition-title">📈 本周各日营养对比</div>
+                <div style="overflow-x:auto;">
+                    <table style="width:100%;border-collapse:collapse;font-size:12px;">
+                        <thead>
+                            <tr style="background:#f9fafb;">
+                                <th style="padding:8px;text-align:left;color:#6b7280;font-weight:500;">日期</th>
+                                <th style="padding:8px;text-align:center;color:#6b7280;font-weight:500;">能量</th>
+                                <th style="padding:8px;text-align:center;color:#6b7280;font-weight:500;">蛋白质</th>
+                                <th style="padding:8px;text-align:center;color:#6b7280;font-weight:500;">脂肪</th>
+                                <th style="padding:8px;text-align:center;color:#6b7280;font-weight:500;">达标</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="border-bottom:1px solid #f3f4f6;background:#f0f9ff;">
+                                <td style="padding:10px 8px;font-weight:600;">周一</td>
+                                <td style="padding:10px 8px;text-align:center;">685</td>
+                                <td style="padding:10px 8px;text-align:center;">28.5g</td>
+                                <td style="padding:10px 8px;text-align:center;">22.5g</td>
+                                <td style="padding:10px 8px;text-align:center;color:#22c55e;">✅</td>
+                            </tr>
+                            <tr style="border-bottom:1px solid #f3f4f6;">
+                                <td style="padding:10px 8px;">周二</td>
+                                <td style="padding:10px 8px;text-align:center;">712</td>
+                                <td style="padding:10px 8px;text-align:center;">26.8g</td>
+                                <td style="padding:10px 8px;text-align:center;">24.1g</td>
+                                <td style="padding:10px 8px;text-align:center;color:#22c55e;">✅</td>
+                            </tr>
+                            <tr style="border-bottom:1px solid #f3f4f6;">
+                                <td style="padding:10px 8px;">周三</td>
+                                <td style="padding:10px 8px;text-align:center;">695</td>
+                                <td style="padding:10px 8px;text-align:center;">30.2g</td>
+                                <td style="padding:10px 8px;text-align:center;">21.8g</td>
+                                <td style="padding:10px 8px;text-align:center;color:#22c55e;">✅</td>
+                            </tr>
+                            <tr style="border-bottom:1px solid #f3f4f6;">
+                                <td style="padding:10px 8px;">周四</td>
+                                <td style="padding:10px 8px;text-align:center;">668</td>
+                                <td style="padding:10px 8px;text-align:center;">27.5g</td>
+                                <td style="padding:10px 8px;text-align:center;">20.5g</td>
+                                <td style="padding:10px 8px;text-align:center;color:#22c55e;">✅</td>
+                            </tr>
+                            <tr>
+                                <td style="padding:10px 8px;">周五</td>
+                                <td style="padding:10px 8px;text-align:center;">672</td>
+                                <td style="padding:10px 8px;text-align:center;">25.8g</td>
+                                <td style="padding:10px 8px;text-align:center;">23.2g</td>
+                                <td style="padding:10px 8px;text-align:center;color:#22c55e;">✅</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- 本周菜品一览 -->
+            <div class="nutrition-summary">
+                <div class="nutrition-title">🍱 本周菜品一览</div>
+                <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:6px;text-align:center;font-size:11px;">
+                    <div style="font-weight:600;color:#6b7280;padding:6px;">周一</div>
+                    <div style="font-weight:600;color:#6b7280;padding:6px;">周二</div>
+                    <div style="font-weight:600;color:#6b7280;padding:6px;">周三</div>
+                    <div style="font-weight:600;color:#6b7280;padding:6px;">周四</div>
+                    <div style="font-weight:600;color:#6b7280;padding:6px;">周五</div>
+
+                    <div style="background:#fef3c7;border-radius:6px;padding:6px;">🍚杂粮饭</div>
+                    <div style="background:#fef3c7;border-radius:6px;padding:6px;">🍚白米饭</div>
+                    <div style="background:#fef3c7;border-radius:6px;padding:6px;">🍜荞麦面</div>
+                    <div style="background:#fef3c7;border-radius:6px;padding:6px;">🍚杂粮饭</div>
+                    <div style="background:#fef3c7;border-radius:6px;padding:6px;">🍚二米饭</div>
+
+                    <div style="background:#fee2e2;border-radius:6px;padding:6px;">🍗红烧鸡腿</div>
+                    <div style="background:#fee2e2;border-radius:6px;padding:6px;">🐟清蒸鲈鱼</div>
+                    <div style="background:#fee2e2;border-radius:6px;padding:6px;">🥩糖醋排骨</div>
+                    <div style="background:#fee2e2;border-radius:6px;padding:6px;">🍤白灼虾</div>
+                    <div style="background:#fee2e2;border-radius:6px;padding:6px;">🥚番茄炒蛋</div>
+
+                    <div style="background:#d1fae5;border-radius:6px;padding:6px;">🥬清炒时蔬</div>
+                    <div style="background:#d1fae5;border-radius:6px;padding:6px;">🥒凉拌黄瓜</div>
+                    <div style="background:#d1fae5;border-radius:6px;padding:6px;">🥦蒜蓉西兰花</div>
+                    <div style="background:#d1fae5;border-radius:6px;padding:6px;">🍆红烧茄子</div>
+                    <div style="background:#d1fae5;border-radius:6px;padding:6px;">🥕炒三丝</div>
+
+                    <div style="background:#dbeafe;border-radius:6px;padding:6px;">🍲紫菜蛋花汤</div>
+                    <div style="background:#dbeafe;border-radius:6px;padding:6px;">🍲冬瓜排骨汤</div>
+                    <div style="background:#dbeafe;border-radius:6px;padding:6px;">🍲番茄蛋汤</div>
+                    <div style="background:#dbeafe;border-radius:6px;padding:6px;">🍲萝卜虾皮汤</div>
+                    <div style="background:#dbeafe;border-radius:6px;padding:6px;">🍲青菜豆腐汤</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 底部导航 -->
+        <nav class="bottom-nav">
+            <a href="index.html" class="bottom-nav-item">
+                <span class="bottom-nav-icon">🏠</span>
+                <span class="bottom-nav-label">首页</span>
+            </a>
+            <a href="order.html" class="bottom-nav-item">
+                <span class="bottom-nav-icon">🛒</span>
+                <span class="bottom-nav-label">点餐</span>
+            </a>
+            <a href="satisfaction.html" class="bottom-nav-item">
+                <span class="bottom-nav-icon">⭐</span>
+                <span class="bottom-nav-label">评价</span>
+            </a>
+            <a href="nutrition-report.html" class="bottom-nav-item">
+                <span class="bottom-nav-icon">📊</span>
+                <span class="bottom-nav-label">报告</span>
+            </a>
+        </nav>
+    </div>
+</body>
+</html>

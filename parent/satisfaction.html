@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>满意度评价 - 智慧营养膳食</title>
+    <link rel="stylesheet" href="../shared/css/common.css">
+    <style>
+        body { background: #f5f5f5; }
+        .mobile-container { max-width: 480px; margin: 0 auto; background: #f5f5f5; min-height: 100vh; position: relative; padding-bottom: 80px; }
+        .mobile-header { background: white; padding: 16px; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .mobile-header-content { display: flex; align-items: center; gap: 12px; }
+        .back-btn { width: 36px; height: 36px; border-radius: 50%; background: #f3f4f6; display: flex; align-items: center; justify-content: center; border: none; font-size: 18px; }
+        .mobile-header-title { font-size: 18px; font-weight: 600; flex: 1; }
+        .mobile-content { padding: 16px; }
+        .recipe-preview { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 16px; padding: 16px; color: white; margin-bottom: 16px; }
+        .recipe-preview-title { font-size: 14px; opacity: 0.9; margin-bottom: 12px; }
+        .recipe-items { display: flex; gap: 12px; flex-wrap: wrap; }
+        .recipe-item { background: rgba(255,255,255,0.2); border-radius: 10px; padding: 10px 14px; display: flex; align-items: center; gap: 8px; }
+        .recipe-item-icon { font-size: 20px; }
+        .recipe-item-name { font-size: 13px; }
+        .rating-section { background: white; border-radius: 16px; padding: 20px; margin-bottom: 16px; }
+        .rating-title { font-size: 16px; font-weight: 600; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+        .rating-item { margin-bottom: 20px; }
+        .rating-item:last-child { margin-bottom: 0; }
+        .rating-item-label { font-size: 14px; color: #374151; margin-bottom: 10px; }
+        .rating-stars { display: flex; gap: 12px; justify-content: center; }
+        .rating-star { font-size: 32px; color: #e5e7eb; cursor: pointer; }
+        .rating-star.active { color: #fbbf24; }
+        .rating-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+        .rating-tag { padding: 6px 14px; background: #f3f4f6; border-radius: 20px; font-size: 13px; color: #6b7280; cursor: pointer; }
+        .rating-tag.active { background: #fef3c7; color: #92400e; }
+        .comment-section { background: white; border-radius: 16px; padding: 20px; margin-bottom: 16px; }
+        .comment-textarea { width: 100%; min-height: 100px; border: 1px solid #e5e7eb; border-radius: 12px; padding: 12px; font-size: 14px; resize: none; }
+        .voice-btn { display: flex; align-items: center; gap: 8px; padding: 10px 16px; background: #f3f4f6; border-radius: 8px; font-size: 13px; color: #6b7280; margin-top: 12px; border: none; }
+        .submit-btn { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; border-radius: 12px; padding: 16px; width: 100%; font-size: 16px; font-weight: 600; }
+        .bottom-nav { position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 480px; background: white; display: flex; justify-content: space-around; padding: 8px 0; box-shadow: 0 -2px 10px rgba(0,0,0,0.08); z-index: 100; }
+        .bottom-nav-item { flex: 1; text-align: center; padding: 8px; color: #9ca3af; text-decoration: none; }
+        .bottom-nav-item.active { color: #667eea; }
+        .bottom-nav-icon { font-size: 24px; display: block; margin-bottom: 2px; }
+        .bottom-nav-label { font-size: 11px; }
+        .success-modal { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; z-index: 200; }
+        .success-content { background: white; border-radius: 20px; padding: 40px; text-align: center; max-width: 300px; }
+        .success-icon { width: 80px; height: 80px; background: #d1fae5; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 40px; margin: 0 auto 20px; }
+        .success-title { font-size: 20px; font-weight: 600; margin-bottom: 8px; }
+        .success-desc { font-size: 14px; color: #6b7280; margin-bottom: 24px; }
+        .success-btn { background: #22c55e; color: white; border: none; border-radius: 10px; padding: 12px 32px; font-size: 15px; font-weight: 600; }
+    </style>
+</head>
+<body>
+    <div class="mobile-container">
+        <!-- 头部 -->
+        <header class="mobile-header">
+            <div class="mobile-header-content">
+                <button class="back-btn" onclick="history.back()">←</button>
+                <div class="mobile-header-title">满意度评价</div>
+            </div>
+        </header>
+
+        <!-- 内容 -->
+        <div class="mobile-content">
+            <!-- 今日菜品预览 -->
+            <div class="recipe-preview">
+                <div class="recipe-preview-title">📅 今日午餐（1月15日）</div>
+                <div class="recipe-items">
+                    <div class="recipe-item"><span class="recipe-item-icon">🍚</span><span class="recipe-item-name">杂粮饭</span></div>
+                    <div class="recipe-item"><span class="recipe-item-icon">🍗</span><span class="recipe-item-name">红烧鸡腿</span></div>
+                    <div class="recipe-item"><span class="recipe-item-icon">🥬</span><span class="recipe-item-name">清炒时蔬</span></div>
+                    <div class="recipe-item"><span class="recipe-item-icon">🍲</span><span class="recipe-item-name">紫菜蛋花汤</span></div>
+                </div>
+            </div>
+
+            <!-- 口味评分 -->
+            <div class="rating-section">
+                <div class="rating-title">😋 口味满意度</div>
+                <div class="rating-item">
+                    <div class="rating-stars">
+                        <span class="rating-star active">⭐</span>
+                        <span class="rating-star active">⭐</span>
+                        <span class="rating-star active">⭐</span>
+                        <span class="rating-star active">⭐</span>
+                        <span class="rating-star">⭐</span>
+                    </div>
+                </div>
+                <div class="rating-tags">
+                    <span class="rating-tag">😋 味道好</span>
+                    <span class="rating-tag active">🌶️ 偏辣</span>
+                    <span class="rating-tag">🧂 偏咸</span>
+                    <span class="rating-tag">🍬 偏甜</span>
+                    <span class="rating-tag">👍 刚刚好</span>
+                </div>
+            </div>
+
+            <!-- 份量评分 -->
+            <div class="rating-section">
+                <div class="rating-title">🍽️ 份量满意度</div>
+                <div class="rating-item">
+                    <div class="rating-stars">
+                        <span class="rating-star active">⭐</span>
+                        <span class="rating-star active">⭐</span>
+                        <span class="rating-star active">⭐</span>
+                        <span class="rating-star active">⭐</span>
+                        <span class="rating-star active">⭐</span>
+                    </div>
+                </div>
+                <div class="rating-tags">
+                    <span class="rating-tag">😋 份量足</span>
+                    <span class="rating-tag">👍 刚刚好</span>
+                    <span class="rating-tag">🤏 有点少</span>
+                </div>
+            </div>
+
+            <!-- 温度评分 -->
+            <div class="rating-section">
+                <div class="rating-title">🌡️ 温度满意度</div>
+                <div class="rating-item">
+                    <div class="rating-stars">
+                        <span class="rating-star active">⭐</span>
+                        <span class="rating-star active">⭐</span>
+                        <span class="rating-star active">⭐</span>
+                        <span class="rating-star active">⭐</span>
+                        <span class="rating-star">⭐</span>
+                    </div>
+                </div>
+                <div class="rating-tags">
+                    <span class="rating-tag">🔥 热乎乎</span>
+                    <span class="rating-tag active">👍 温度适中</span>
+                    <span class="rating-tag">❄️ 有点凉</span>
+                </div>
+            </div>
+
+            <!-- 卫生评分 -->
+            <div class="rating-section">
+                <div class="rating-title">✨ 卫生满意度</div>
+                <div class="rating-item">
+                    <div class="rating-stars">
+                        <span class="rating-star active">⭐</span>
+                        <span class="rating-star active">⭐</span>
+                        <span class="rating-star active">⭐</span>
+                        <span class="rating-star active">⭐</span>
+                        <span class="rating-star active">⭐</span>
+                    </div>
+                </div>
+                <div class="rating-tags">
+                    <span class="rating-tag active">✨ 很干净</span>
+                    <span class="rating-tag">👍 一般</span>
+                    <span class="rating-tag">🤔 需改进</span>
+                </div>
+            </div>
+
+            <!-- 意见建议 -->
+            <div class="comment-section">
+                <div class="rating-title">💬 意见建议（选填）</div>
+                <textarea class="comment-textarea" placeholder="请输入您的宝贵意见，帮助我们改进..."></textarea>
+                <button class="voice-btn">🎤 语音输入</button>
+            </div>
+
+            <!-- 提交按钮 -->
+            <button class="submit-btn" onclick="showSuccess()">✅ 提交评价</button>
+        </div>
+
+        <!-- 底部导航 -->
+        <nav class="bottom-nav">
+            <a href="index.html" class="bottom-nav-item">
+                <span class="bottom-nav-icon">🏠</span>
+                <span class="bottom-nav-label">首页</span>
+            </a>
+            <a href="order.html" class="bottom-nav-item">
+                <span class="bottom-nav-icon">🛒</span>
+                <span class="bottom-nav-label">点餐</span>
+            </a>
+            <a href="satisfaction.html" class="bottom-nav-item active">
+                <span class="bottom-nav-icon">⭐</span>
+                <span class="bottom-nav-label">评价</span>
+            </a>
+            <a href="nutrition-report.html" class="bottom-nav-item">
+                <span class="bottom-nav-icon">📊</span>
+                <span class="bottom-nav-label">报告</span>
+            </a>
+        </nav>
+    </div>
+
+    <!-- 成功弹窗 -->
+    <div class="success-modal" id="successModal" style="display:none;">
+        <div class="success-content">
+            <div class="success-icon">✅</div>
+            <div class="success-title">评价成功！</div>
+            <div class="success-desc">感谢您的反馈，我们会持续改进</div>
+            <button class="success-btn" onclick="location.href='index.html'">返回首页</button>
+        </div>
+    </div>
+
+    <script>
+        function showSuccess() {
+            document.getElementById('successModal').style.display = 'flex';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>营养监测预警 - 中小学带量食谱系统</title>
+    <link rel="stylesheet" href="../shared/css/common.css">
+</head>
+<body>
+    <div class="layout">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <div class="logo-icon">🍱</div>
+                    <div>
+                        <div class="logo-text">智慧营养膳食平台</div>
+                        <div class="logo-subtext">教育局端</div>
+                    </div>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <div class="nav-section-title">数据监管</div>
+                    <a href="dashboard.html" class="nav-item"><span class="nav-item-icon">📊</span>数据驾驶舱</a>
+                    <a href="dining-data.html" class="nav-item"><span class="nav-item-icon">🍽️</span>学生就餐数据监管</a>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-title">内容管理</div>
+                    <a href="dish-library.html" class="nav-item"><span class="nav-item-icon">🥗</span>公共菜肴库管理</a>
+                    <a href="recipe-template.html" class="nav-item"><span class="nav-item-icon">📋</span>公共周食谱模板</a>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-title">监测预警</div>
+                    <a href="warning-monitor.html" class="nav-item active"><span class="nav-item-icon">⚠️</span>营养监测预警<span class="nav-item-badge">5</span></a>
+                </div>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="top-header">
+                <div class="header-left">
+                    <div class="breadcrumb">
+                        <a href="dashboard.html">首页</a>
+                        <span class="breadcrumb-separator">/</span>
+                        <span>营养监测预警</span>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <button class="header-btn">🔔<span class="header-btn-badge"></span></button>
+                    <button class="header-btn">⚙️</button>
+                    <div class="user-menu">
+                        <div class="user-avatar">张</div>
+                        <div class="user-info">
+                            <div class="user-name">张管理员</div>
+                            <div class="user-role">教育局营养科</div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="page-content">
+                <div class="page-header">
+                    <h1 class="page-title">营养监测预警</h1>
+                    <p class="page-subtitle">实时监控辖区学校营养配比合规性，及时发现并处理营养风险</p>
+                </div>
+
+                <div class="grid grid-3" style="margin-bottom:24px;">
+                    <div class="stat-card" style="border-left:4px solid #ef4444;">
+                        <div class="stat-icon" style="background:#fee2e2;">🚨</div>
+                        <div class="stat-content">
+                            <div class="stat-label">一级预警（立即整改）</div>
+                            <div class="stat-value" style="color:#ef4444;">3</div>
+                            <div class="stat-change"><span>食品安全风险、严重营养失衡</span></div>
+                        </div>
+                    </div>
+                    <div class="stat-card" style="border-left:4px solid #f59e0b;">
+                        <div class="stat-icon" style="background:#ffedd5;">⚠️</div>
+                        <div class="stat-content">
+                            <div class="stat-label">二级预警（限期调整）</div>
+                            <div class="stat-value" style="color:#f59e0b;">8</div>
+                            <div class="stat-change"><span>轻微营养偏差、搭配不合理</span></div>
+                        </div>
+                    </div>
+                    <div class="stat-card" style="border-left:4px solid #10b981;">
+                        <div class="stat-icon" style="background:#d1fae5;">💡</div>
+                        <div class="stat-content">
+                            <div class="stat-label">三级预警（优化建议）</div>
+                            <div class="stat-value" style="color:#10b981;">15</div>
+                            <div class="stat-change"><span>营养可优化空间提示</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" style="margin-bottom:24px;">
+                    <div class="card-header">
+                        <div class="card-title">预警列表</div>
+                        <div style="display:flex;gap:12px;">
+                            <select class="form-select" style="width:120px;">
+                                <option>全部级别</option>
+                                <option>一级预警</option>
+                                <option>二级预警</option>
+                                <option>三级预警</option>
+                            </select>
+                            <select class="form-select" style="width:120px;">
+                                <option>全部类型</option>
+                                <option>合规性预警</option>
+                                <option>安全风险</option>
+                                <option>趋势预警</option>
+                            </select>
+                            <select class="form-select" style="width:120px;">
+                                <option>全部状态</option>
+                                <option>未处理</option>
+                                <option>处理中</option>
+                                <option>已解决</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div style="display:flex;flex-direction:column;gap:16px;">
+                            <div style="display:flex;gap:16px;padding:20px;background:#fee2e2;border-radius:12px;border-left:4px solid #ef4444;">
+                                <div style="width:48px;height:48px;background:#ef4444;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;">🚨</div>
+                                <div style="flex:1;">
+                                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+                                        <div style="font-weight:600;font-size:16px;color:#991b1b;">蛋白质供给严重不足</div>
+                                        <span class="tag" style="background:#ef4444;color:white;">一级预警</span>
+                                    </div>
+                                    <div style="font-size:14px;color:#7f1d1d;margin-bottom:12px;">阳光小学连续3天午餐蛋白质供给不足标准值的60%，严重影响学生营养摄入</div>
+                                    <div style="display:flex;gap:24px;font-size:13px;color:#991b1b;">
+                                        <span>🏫 阳光小学</span>
+                                        <span>📅 2024-01-15</span>
+                                        <span>⚠️ 合规性预警</span>
+                                    </div>
+                                </div>
+                                <div style="display:flex;flex-direction:column;gap:8px;">
+                                    <button class="btn btn-danger" style="white-space:nowrap;">立即处理</button>
+                                    <button class="btn btn-ghost" style="white-space:nowrap;">查看详情</button>
+                                </div>
+                            </div>
+
+                            <div style="display:flex;gap:16px;padding:20px;background:#fee2e2;border-radius:12px;border-left:4px solid #ef4444;">
+                                <div style="width:48px;height:48px;background:#ef4444;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;">🚨</div>
+                                <div style="flex:1;">
+                                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+                                        <div style="font-weight:600;font-size:16px;color:#991b1b;">能量摄入超标</div>
+                                        <span class="tag" style="background:#ef4444;color:white;">一级预警</span>
+                                    </div>
+                                    <div style="font-size:14px;color:#7f1d1d;margin-bottom:12px;">育才中学本周平均能量摄入超标25%，脂肪供给比例超过35%</div>
+                                    <div style="display:flex;gap:24px;font-size:13px;color:#991b1b;">
+                                        <span>🏫 育才中学</span>
+                                        <span>📅 2024-01-15</span>
+                                        <span>⚠️ 合规性预警</span>
+                                    </div>
+                                </div>
+                                <div style="display:flex;flex-direction:column;gap:8px;">
+                                    <button class="btn btn-danger" style="white-space:nowrap;">立即处理</button>
+                                    <button class="btn btn-ghost" style="white-space:nowrap;">查看详情</button>
+                                </div>
+                            </div>
+
+                            <div style="display:flex;gap:16px;padding:20px;background:#fef3c7;border-radius:12px;border-left:4px solid #f59e0b;">
+                                <div style="width:48px;height:48px;background:#f59e0b;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;">⚠️</div>
+                                <div style="flex:1;">
+                                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+                                        <div style="font-weight:600;font-size:16px;color:#92400e;">菜谱连续重复</div>
+                                        <span class="tag" style="background:#f59e0b;color:white;">二级预警</span>
+                                    </div>
+                                    <div style="font-size:14px;color:#78350f;margin-bottom:12px;">实验小学连续2日午餐主菜重复，影响学生食欲和营养多样性</div>
+                                    <div style="display:flex;gap:24px;font-size:13px;color:#92400e;">
+                                        <span>🏫 实验小学</span>
+                                        <span>📅 2024-01-14</span>
+                                        <span>⚠️ 合规性预警</span>
+                                    </div>
+                                </div>
+                                <div style="display:flex;flex-direction:column;gap:8px;">
+                                    <button class="btn" style="background:#f59e0b;color:white;white-space:nowrap;">限期调整</button>
+                                    <button class="btn btn-ghost" style="white-space:nowrap;">查看详情</button>
+                                </div>
+                            </div>
+
+                            <div style="display:flex;gap:16px;padding:20px;background:#fef3c7;border-radius:12px;border-left:4px solid #f59e0b;">
+                                <div style="width:48px;height:48px;background:#f59e0b;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;">⚠️</div>
+                                <div style="flex:1;">
+                                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+                                        <div style="font-weight:600;font-size:16px;color:#92400e;">剩餐率异常偏高</div>
+                                        <span class="tag" style="background:#f59e0b;color:white;">二级预警</span>
+                                    </div>
+                                    <div style="font-size:14px;color:#78350f;margin-bottom:12px;">外国语小学本周剩餐率达到32%，超出警戒线（20%）</div>
+                                    <div style="display:flex;gap:24px;font-size:13px;color:#92400e;">
+                                        <span>🏫 外国语小学</span>
+                                        <span>📅 2024-01-14</span>
+                                        <span>📊 趋势预警</span>
+                                    </div>
+                                </div>
+                                <div style="display:flex;flex-direction:column;gap:8px;">
+                                    <button class="btn" style="background:#f59e0b;color:white;white-space:nowrap;">限期调整</button>
+                                    <button class="btn btn-ghost" style="white-space:nowrap;">查看详情</button>
+                                </div>
+                            </div>
+
+                            <div style="display:flex;gap:16px;padding:20px;background:#d1fae5;border-radius:12px;border-left:4px solid #10b981;">
+                                <div style="width:48px;height:48px;background:#10b981;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;">💡</div>
+                                <div style="flex:1;">
+                                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+                                        <div style="font-weight:600;font-size:16px;color:#065f46;">钙摄入可优化</div>
+                                        <span class="tag" style="background:#10b981;color:white;">三级预警</span>
+                                    </div>
+                                    <div style="font-size:14px;color:#064e3b;margin-bottom:12px;">外国语小学学生钙摄入量略低于推荐值，建议增加奶制品或豆制品</div>
+                                    <div style="display:flex;gap:24px;font-size:13px;color:#065f46;">
+                                        <span>🏫 外国语小学</span>
+                                        <span>📅 2024-01-13</span>
+                                        <span>💡 优化建议</span>
+                                    </div>
+                                </div>
+                                <div style="display:flex;flex-direction:column;gap:8px;">
+                                    <button class="btn" style="background:#10b981;color:white;white-space:nowrap;">采纳建议</button>
+                                    <button class="btn btn-ghost" style="white-space:nowrap;">查看详情</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

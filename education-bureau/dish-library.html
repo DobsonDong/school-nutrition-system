@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>公共菜肴库管理 - 中小学带量食谱系统</title>
+    <link rel="stylesheet" href="../shared/css/common.css">
+</head>
+<body>
+    <div class="layout">
+        <!-- 侧边栏 -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <div class="logo-icon">🍱</div>
+                    <div>
+                        <div class="logo-text">智慧营养膳食平台</div>
+                        <div class="logo-subtext">教育局端</div>
+                    </div>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <div class="nav-section-title">数据监管</div>
+                    <a href="dashboard.html" class="nav-item"><span class="nav-item-icon">📊</span>数据驾驶舱</a>
+                    <a href="dining-data.html" class="nav-item"><span class="nav-item-icon">🍽️</span>学生就餐数据监管</a>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-title">内容管理</div>
+                    <a href="dish-library.html" class="nav-item active"><span class="nav-item-icon">🥗</span>公共菜肴库管理</a>
+                    <a href="recipe-template.html" class="nav-item"><span class="nav-item-icon">📋</span>公共周食谱模板</a>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-title">监测预警</div>
+                    <a href="warning-monitor.html" class="nav-item"><span class="nav-item-icon">⚠️</span>营养监测预警<span class="nav-item-badge">5</span></a>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- 主内容 -->
+        <main class="main-content">
+            <!-- 顶部导航 -->
+            <header class="top-header">
+                <div class="header-left">
+                    <div class="breadcrumb">
+                        <a href="dashboard.html">首页</a>
+                        <span class="breadcrumb-separator">/</span>
+                        <span>公共菜肴库管理</span>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <button class="header-btn">🔔<span class="header-btn-badge"></span></button>
+                    <button class="header-btn">⚙️</button>
+                    <div class="user-menu">
+                        <div class="user-avatar">张</div>
+                        <div class="user-info">
+                            <div class="user-name">张管理员</div>
+                            <div class="user-role">教育局营养科</div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- 页面内容 -->
+            <div class="page-content">
+                <div class="page-header">
+                    <h1 class="page-title">公共菜肴库管理</h1>
+                    <p class="page-subtitle">建立全区统一的标准化菜肴数据库，作为学校食谱编排的基础元素</p>
+                    <div class="page-actions">
+                        <button class="btn btn-primary">+ 新增菜肴</button>
+                        <button class="btn btn-secondary">📥 批量导入</button>
+                        <button class="btn btn-secondary">📤 导出数据</button>
+                    </div>
+                </div>
+
+                <!-- 统计卡片 -->
+                <div class="grid grid-4" style="margin-bottom:24px;">
+                    <div class="stat-card">
+                        <div class="stat-icon blue">🥗</div>
+                        <div class="stat-content">
+                            <div class="stat-label">菜肴总数</div>
+                            <div class="stat-value">528</div>
+                            <div class="stat-change up"><span>↑</span><span>本月新增 32</span></div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon green">✅</div>
+                        <div class="stat-content">
+                            <div class="stat-label">已审核通过</div>
+                            <div class="stat-value">486</div>
+                            <div class="stat-change up"><span>↑</span><span>通过率 92%</span></div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon orange">⏳</div>
+                        <div class="stat-content">
+                            <div class="stat-label">待审核</div>
+                            <div class="stat-value">28</div>
+                            <div class="stat-change"><span>待处理</span></div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon purple">📚</div>
+                        <div class="stat-content">
+                            <div class="stat-label">分类标签</div>
+                            <div class="stat-value">16</div>
+                            <div class="stat-change"><span>涵盖全学段</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 筛选和搜索 -->
+                <div class="card" style="margin-bottom:24px;">
+                    <div class="card-body">
+                        <div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap;">
+                            <div class="search-box">
+                                <span class="search-box-icon">🔍</span>
+                                <input type="text" class="form-input" placeholder="搜索菜肴名称、食材..." style="width:280px;">
+                            </div>
+                            <select class="form-select" style="width:140px;">
+                                <option>全部年龄段</option>
+                                <option>小学低段</option>
+                                <option>小学高段</option>
+                                <option>初中</option>
+                                <option>高中</option>
+                            </select>
+                            <select class="form-select" style="width:140px;">
+                                <option>全部餐别</option>
+                                <option>早餐</option>
+                                <option>午餐</option>
+                                <option>晚餐</option>
+                                <option>加餐</option>
+                            </select>
+                            <select class="form-select" style="width:140px;">
+                                <option>全部状态</option>
+                                <option>已审核</option>
+                                <option>待审核</option>
+                                <option>已驳回</option>
+                            </select>
+                            <button class="btn btn-secondary" style="margin-left:auto;">🔄 重置筛选</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 菜肴列表 -->
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <div class="card-title">菜肴列表</div>
+                            <div class="card-subtitle">共 528 道菜肴</div>
+                        </div>
+                        <div style="display:flex;gap:8px;">
+                            <button class="btn btn-ghost">📊 列表视图</button>
+                            <button class="btn btn-secondary">⊞ 网格视图</button>
+                        </div>
+                    </div>
+                    <div class="table-container">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th><input type="checkbox"></th>
+                                    <th>菜肴信息</th>
+                                    <th>年龄段</th>
+                                    <th>餐别</th>
+                                    <th>营养数据(每100g)</th>
+                                    <th>过敏原</th>
+                                    <th>状态</th>
+                                    <th>更新时间</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><input type="checkbox"></td>
+                                    <td>
+                                        <div style="display:flex;align-items:center;gap:12px;">
+                                            <div style="width:48px;height:48px;background:#f3f4f6;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:24px;">🍗</div>
+                                            <div>
+                                                <div style="font-weight:600;">红烧鸡腿</div>
+                                                <div style="font-size:12px;color:#6b7280;">编码: 310104010001001</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td><span class="tag tag-blue">小学高段</span><span class="tag tag-blue">初中</span></td>
+                                    <td><span class="tag tag-green">午餐</span></td>
+                                    <td>
+                                        <div style="display:flex;gap:8px;flex-wrap:wrap;">
+                                            <span class="nutrition-tag energy">🔥 165kcal</span>
+                                            <span class="nutrition-tag protein">💪 18.5g</span>
+                                            <span class="nutrition-tag fat">🥑 9.2g</span>
+                                        </div>
+                                    </td>
+                                    <td>-</td>
+                                    <td><span class="tag tag-green">✅ 已审核</span></td>
+                                    <td>2024-01-15</td>
+                                    <td>
+                                        <div class="actions">
+                                            <button class="btn btn-sm btn-ghost">👁️</button>
+                                            <button class="btn btn-sm btn-ghost">✏️</button>
+                                            <button class="btn btn-sm btn-ghost">🗑️</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox"></td>
+                                    <td>
+                                        <div style="display:flex;align-items:center;gap:12px;">
+                                            <div style="width:48px;height:48px;background:#f3f4f6;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:24px;">🥬</div>
+                                            <div>
+                                                <div style="font-weight:600;">清炒时蔬</div>
+                                                <div style="font-size:12px;color:#6b7280;">编码: 310104010001002</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td><span class="tag tag-blue">全年龄段</span></td>
+                                    <td><span class="tag tag-green">午餐</span><span class="tag tag-green">晚餐</span></td>
+                                    <td>
+                                        <div style="display:flex;gap:8px;flex-wrap:wrap;">
+                                            <span class="nutrition-tag energy">🔥 45kcal</span>
+                                            <span class="nutrition-tag protein">💪 2.1g</span>
+                                            <span class="nutrition-tag carbs">🌾 6.8g</span>
+                                        </div>
+                                    </td>
+                                    <td>-</td>
+                                    <td><span class="tag tag-green">✅ 已审核</span></td>
+                                    <td>2024-01-14</td>
+                                    <td>
+                                        <div class="actions">
+                                            <button class="btn btn-sm btn-ghost">👁️</button>
+                                            <button class="btn btn-sm btn-ghost">✏️</button>
+                                            <button class="btn btn-sm btn-ghost">🗑️</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox"></td>
+                                    <td>
+                                        <div style="display:flex;align-items:center;gap:12px;">
+                                            <div style="width:48px;height:48px;background:#f3f4f6;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:24px;">🍤</div>
+                                            <div>
+                                                <div style="font-weight:600;">白灼虾</div>
+                                                <div style="font-size:12px;color:#6b7280;">编码: 310104010001003</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td><span class="tag tag-blue">全年龄段</span></td>
+                                    <td><span class="tag tag-green">午餐</span></td>
+                                    <td>
+                                        <div style="display:flex;gap:8px;flex-wrap:wrap;">
+                                            <span class="nutrition-tag energy">🔥 85kcal</span>
+                                            <span class="nutrition-tag protein">💪 18.2g</span>
+                                            <span class="nutrition-tag fat">🥑 0.8g</span>
+                                        </div>
+                                    </td>
+                                    <td><span class="tag tag-red">🦐 甲壳类</span></td>
+                                    <td><span class="tag tag-orange">⏳ 待审核</span></td>
+                                    <td>2024-01-15</td>
+                                    <td>
+                                        <div class="actions">
+                                            <button class="btn btn-sm btn-ghost">👁️</button>
+                                            <button class="btn btn-sm btn-primary">✓ 审核</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox"></td>
+                                    <td>
+                                        <div style="display:flex;align-items:center;gap:12px;">
+                                            <div style="width:48px;height:48px;background:#f3f4f6;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:24px;">🍚</div>
+                                            <div>
+                                                <div style="font-weight:600;">杂粮饭</div>
+                                                <div style="font-size:12px;color:#6b7280;">编码: 310104010001004</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td><span class="tag tag-blue">全年龄段</span></td>
+                                    <td><span class="tag tag-green">午餐</span><span class="tag tag-green">晚餐</span></td>
+                                    <td>
+                                        <div style="display:flex;gap:8px;flex-wrap:wrap;">
+                                            <span class="nutrition-tag energy">🔥 125kcal</span>
+                                            <span class="nutrition-tag protein">💪 4.2g</span>
+                                            <span class="nutrition-tag carbs">🌾 26.5g</span>
+                                        </div>
+                                    </td>
+                                    <td>-</td>
+                                    <td><span class="tag tag-green">✅ 已审核</span></td>
+                                    <td>2024-01-13</td>
+                                    <td>
+                                        <div class="actions">
+                                            <button class="btn btn-sm btn-ghost">👁️</button>
+                                            <button class="btn btn-sm btn-ghost">✏️</button>
+                                            <button class="btn btn-sm btn-ghost">🗑️</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox"></td>
+                                    <td>
+                                        <div style="display:flex;align-items:center;gap:12px;">
+                                            <div style="width:48px;height:48px;background:#f3f4f6;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:24px;">🥚</div>
+                                            <div>
+                                                <div style="font-weight:600;">番茄炒蛋</div>
+                                                <div style="font-size:12px;color:#6b7280;">编码: 310104010001005</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td><span class="tag tag-blue">全年龄段</span></td>
+                                    <td><span class="tag tag-green">午餐</span></td>
+                                    <td>
+                                        <div style="display:flex;gap:8px;flex-wrap:wrap;">
+                                            <span class="nutrition-tag energy">🔥 95kcal</span>
+                                            <span class="nutrition-tag protein">💪 6.8g</span>
+                                            <span class="nutrition-tag fat">🥑 6.2g</span>
+                                        </div>
+                                    </td>
+                                    <td><span class="tag tag-red">🥚 鸡蛋</span></td>
+                                    <td><span class="tag tag-green">✅ 已审核</span></td>
+                                    <td>2024-01-12</td>
+                                    <td>
+                                        <div class="actions">
+                                            <button class="btn btn-sm btn-ghost">👁️</button>
+                                            <button class="btn btn-sm btn-ghost">✏️</button>
+                                            <button class="btn btn-sm btn-ghost">🗑️</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="card-footer" style="display:flex;justify-content:space-between;align-items:center;">
+                        <div style="font-size:13px;color:#6b7280;">显示 1-5 条，共 528 条</div>
+                        <div class="pagination">
+                            <button class="page-btn" disabled>←</button>
+                            <button class="page-btn active">1</button>
+                            <button class="page-btn">2</button>
+                            <button class="page-btn">3</button>
+                            <span style="padding:0 8px;">...</span>
+                            <button class="page-btn">106</button>
+                            <button class="page-btn">→</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

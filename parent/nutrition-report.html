@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>营养摄入报告 - 智慧营养膳食</title>
+    <link rel="stylesheet" href="../shared/css/common.css">
+    <style>
+        body { background: #f5f5f5; }
+        .mobile-container { max-width: 480px; margin: 0 auto; background: #f5f5f5; min-height: 100vh; position: relative; padding-bottom: 80px; }
+        .mobile-header { background: white; padding: 16px; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .mobile-header-content { display: flex; align-items: center; gap: 12px; }
+        .back-btn { width: 36px; height: 36px; border-radius: 50%; background: #f3f4f6; display: flex; align-items: center; justify-content: center; border: none; font-size: 18px; }
+        .mobile-header-title { font-size: 18px; font-weight: 600; flex: 1; }
+        .mobile-content { padding: 16px; }
+        .period-selector { display: flex; gap: 8px; padding: 4px; background: white; border-radius: 12px; margin-bottom: 16px; }
+        .period-item { flex: 1; padding: 10px; text-align: center; border-radius: 8px; font-size: 14px; color: #6b7280; }
+        .period-item.active { background: #667eea; color: white; font-weight: 500; }
+        .score-card { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 20px; padding: 24px; color: white; text-align: center; margin-bottom: 16px; }
+        .score-title { font-size: 14px; opacity: 0.9; margin-bottom: 8px; }
+        .score-value { font-size: 64px; font-weight: 700; line-height: 1; }
+        .score-label { font-size: 14px; margin-top: 8px; opacity: 0.9; }
+        .score-desc { font-size: 12px; margin-top: 12px; opacity: 0.8; }
+        .section-card { background: white; border-radius: 16px; padding: 16px; margin-bottom: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        .section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+        .section-title { font-size: 16px; font-weight: 600; color: #111827; }
+        .section-more { font-size: 13px; color: #667eea; }
+        .nutrition-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+        .nutrition-card { background: #f9fafb; border-radius: 12px; padding: 16px; text-align: center; }
+        .nutrition-icon { font-size: 24px; margin-bottom: 8px; }
+        .nutrition-value { font-size: 20px; font-weight: 700; color: #111827; }
+        .nutrition-label { font-size: 12px; color: #6b7280; margin-top: 4px; }
+        .nutrition-target { font-size: 11px; color: #22c55e; margin-top: 4px; }
+        .chart-container { height: 200px; background: #f9fafb; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #6b7280; }
+        .suggestion-list { display: flex; flex-direction: column; gap: 12px; }
+        .suggestion-item { display: flex; gap: 12px; padding: 14px; background: #f0fdf4; border-radius: 12px; border-left: 3px solid #22c55e; }
+        .suggestion-icon { font-size: 24px; }
+        .suggestion-content { flex: 1; }
+        .suggestion-title { font-weight: 600; color: #166534; font-size: 14px; }
+        .suggestion-desc { font-size: 13px; color: #15803d; margin-top: 4px; }
+        .comparison-table { width: 100%; }
+        .comparison-table th { text-align: left; padding: 10px; font-size: 12px; color: #6b7280; font-weight: 500; background: #f9fafb; }
+        .comparison-table td { padding: 12px 10px; border-bottom: 1px solid #f3f4f6; font-size: 13px; }
+        .comparison-bar { width: 60px; height: 6px; background: #e5e7eb; border-radius: 3px; overflow: hidden; }
+        .comparison-fill { height: 100%; border-radius: 3px; }
+        .bottom-nav { position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 480px; background: white; display: flex; justify-content: space-around; padding: 8px 0; box-shadow: 0 -2px 10px rgba(0,0,0,0.08); z-index: 100; }
+        .bottom-nav-item { flex: 1; text-align: center; padding: 8px; color: #9ca3af; text-decoration: none; }
+        .bottom-nav-item.active { color: #667eea; }
+        .bottom-nav-icon { font-size: 24px; display: block; margin-bottom: 2px; }
+        .bottom-nav-label { font-size: 11px; }
+        .ai-badge { display: inline-flex; align-items: center; gap: 4px; padding: 4px 10px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 20px; font-size: 11px; }
+    </style>
+</head>
+<body>
+    <div class="mobile-container">
+        <!-- 头部 -->
+        <header class="mobile-header">
+            <div class="mobile-header-content">
+                <button class="back-btn" onclick="history.back()">←</button>
+                <div class="mobile-header-title">营养摄入报告</div>
+            </div>
+        </header>
+
+        <!-- 内容 -->
+        <div class="mobile-content">
+            <!-- 周期选择 -->
+            <div class="period-selector">
+                <div class="period-item">周报</div>
+                <div class="period-item active">月报</div>
+                <div class="period-item">学期报</div>
+            </div>
+
+            <!-- 综合评分 -->
+            <div class="score-card">
+                <div class="score-title">🎯 膳食健康综合评分</div>
+                <div class="score-value">92</div>
+                <div class="score-label">优秀</div>
+                <div class="score-desc">您的孩子营养摄入均衡，继续保持！</div>
+            </div>
+
+            <!-- 营养素摄入 -->
+            <div class="section-card">
+                <div class="section-header">
+                    <div class="section-title">📊 营养素摄入</div>
+                    <span style="font-size:12px;color:#6b7280;">单位: 日均</span>
+                </div>
+                <div class="nutrition-grid">
+                    <div class="nutrition-card">
+                        <div class="nutrition-icon">🔥</div>
+                        <div class="nutrition-value">685</div>
+                        <div class="nutrition-label">能量(kcal)</div>
+                        <div class="nutrition-target">✓ 达标</div>
+                    </div>
+                    <div class="nutrition-card">
+                        <div class="nutrition-icon">💪</div>
+                        <div class="nutrition-value">28.5</div>
+                        <div class="nutrition-label">蛋白质(g)</div>
+                        <div class="nutrition-target">✓ 达标</div>
+                    </div>
+                    <div class="nutrition-card">
+                        <div class="nutrition-icon">🥑</div>
+                        <div class="nutrition-value">22.5</div>
+                        <div class="nutrition-label">脂肪(g)</div>
+                        <div class="nutrition-target">✓ 达标</div>
+                    </div>
+                    <div class="nutrition-card">
+                        <div class="nutrition-icon">🌾</div>
+                        <div class="nutrition-value">95.2</div>
+                        <div class="nutrition-label">碳水(g)</div>
+                        <div class="nutrition-target">✓ 达标</div>
+                    </div>
+                    <div class="nutrition-card">
+                        <div class="nutrition-icon">🦴</div>
+                        <div class="nutrition-value">325</div>
+                        <div class="nutrition-label">钙(mg)</div>
+                        <div class="nutrition-target" style="color:#f59e0b;">⚠ 偏低</div>
+                    </div>
+                    <div class="nutrition-card">
+                        <div class="nutrition-icon">🩸</div>
+                        <div class="nutrition-value">9.5</div>
+                        <div class="nutrition-label">铁(mg)</div>
+                        <div class="nutrition-target">✓ 达标</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 摄入趋势 -->
+            <div class="section-card">
+                <div class="section-header">
+                    <div class="section-title">📈 近30天能量摄入趋势</div>
+                </div>
+                <div class="chart-container" style="height:auto;padding:16px;">
+                    <div style="display:flex;align-items:flex-end;gap:8px;height:140px;">
+                        <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;">
+                            <div style="font-size:10px;color:#6b7280;">680</div>
+                            <div style="width:100%;height:90%;background:linear-gradient(180deg,#667eea,#a5b4fc);border-radius:3px;"></div>
+                            <div style="font-size:9px;color:#9ca3af;">1日</div>
+                        </div>
+                        <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;">
+                            <div style="font-size:10px;color:#6b7280;">712</div>
+                            <div style="width:100%;height:95%;background:linear-gradient(180deg,#667eea,#a5b4fc);border-radius:3px;"></div>
+                            <div style="font-size:9px;color:#9ca3af;">5日</div>
+                        </div>
+                        <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;">
+                            <div style="font-size:10px;color:#6b7280;">665</div>
+                            <div style="width:100%;height:88%;background:linear-gradient(180deg,#667eea,#a5b4fc);border-radius:3px;"></div>
+                            <div style="font-size:9px;color:#9ca3af;">10日</div>
+                        </div>
+                        <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;">
+                            <div style="font-size:10px;color:#6b7280;">695</div>
+                            <div style="width:100%;height:92%;background:linear-gradient(180deg,#667eea,#a5b4fc);border-radius:3px;"></div>
+                            <div style="font-size:9px;color:#9ca3af;">15日</div>
+                        </div>
+                        <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;">
+                            <div style="font-size:10px;color:#6b7280;">705</div>
+                            <div style="width:100%;height:94%;background:linear-gradient(180deg,#667eea,#a5b4fc);border-radius:3px;"></div>
+                            <div style="font-size:9px;color:#9ca3af;">20日</div>
+                        </div>
+                        <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;">
+                            <div style="font-size:10px;color:#6b7280;">685</div>
+                            <div style="width:100%;height:91%;background:linear-gradient(180deg,#22c55e,#86efac);border-radius:3px;"></div>
+                            <div style="font-size:9px;color:#9ca3af;">25日</div>
+                        </div>
+                        <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;">
+                            <div style="font-size:10px;color:#667eea;">685</div>
+                            <div style="width:100%;height:91%;background:linear-gradient(180deg,#22c55e,#86efac);border-radius:3px;"></div>
+                            <div style="font-size:9px;color:#9ca3af;">30日</div>
+                        </div>
+                    </div>
+                    <div style="text-align:center;margin-top:8px;font-size:11px;color:#22c55e;">能量摄入稳定在推荐范围内</div>
+                </div>
+            </div>
+
+            <!-- 与同龄人对比 -->
+            <div class="section-card">
+                <div class="section-header">
+                    <div class="section-title">👥 与同龄人对比</div>
+                </div>
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>营养素</th>
+                            <th>您的孩子</th>
+                            <th>同龄人平均</th>
+                            <th>对比</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>能量</td>
+                            <td>685 kcal</td>
+                            <td>650 kcal</td>
+                            <td><span style="color:#22c55e;">+5.4% ↑</span></td>
+                        </tr>
+                        <tr>
+                            <td>蛋白质</td>
+                            <td>28.5 g</td>
+                            <td>26.2 g</td>
+                            <td><span style="color:#22c55e;">+8.8% ↑</span></td>
+                        </tr>
+                        <tr>
+                            <td>钙</td>
+                            <td>325 mg</td>
+                            <td>380 mg</td>
+                            <td><span style="color:#ef4444;">-14.5% ↓</span></td>
+                        </tr>
+                        <tr>
+                            <td>维生素C</td>
+                            <td>38 mg</td>
+                            <td>42 mg</td>
+                            <td><span style="color:#f59e0b;">-9.5% ↓</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- AI个性化建议 -->
+            <div class="section-card">
+                <div class="section-header">
+                    <div class="section-title">💡 AI个性化建议</div>
+                    <div class="ai-badge">🤖 AI生成</div>
+                </div>
+                <div class="suggestion-list">
+                    <div class="suggestion-item">
+                        <div class="suggestion-icon">🦴</div>
+                        <div class="suggestion-content">
+                            <div class="suggestion-title">增加钙摄入</div>
+                            <div class="suggestion-desc">本周钙摄入略低于推荐值，建议增加牛奶、酸奶、豆制品等富含钙的食物。</div>
+                        </div>
+                    </div>
+                    <div class="suggestion-item">
+                        <div class="suggestion-icon">🍊</div>
+                        <div class="suggestion-content">
+                            <div class="suggestion-title">补充维生素C</div>
+                            <div class="suggestion-desc">建议增加新鲜水果蔬菜摄入，如橙子、猕猴桃、西红柿等。</div>
+                        </div>
+                    </div>
+                    <div class="suggestion-item">
+                        <div class="suggestion-icon">🏃</div>
+                        <div class="suggestion-content">
+                            <div class="suggestion-title">运动营养建议</div>
+                            <div class="suggestion-desc">根据阳光跑数据，孩子运动量较大，建议适当增加碳水化合物摄入。</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 膳食结构评分 -->
+            <div class="section-card">
+                <div class="section-header">
+                    <div class="section-title">🍽️ 膳食结构评分</div>
+                </div>
+                <div style="display:flex;justify-content:center;margin-bottom:8px;">
+                    <div style="width:160px;height:160px;border-radius:50%;background:conic-gradient(#22c55e 0% 30%,#3b82f6 30% 55%,#f59e0b 55% 72%,#8b5cf6 72% 88%,#06b6d4 88% 100%);display:flex;align-items:center;justify-content:center;">
+                        <div style="width:100px;height:100px;background:white;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;">
+                            <div style="font-size:22px;font-weight:700;color:#667eea;">88</div>
+                            <div style="font-size:10px;color:#6b7280;">综合评分</div>
+                        </div>
+                    </div>
+                </div>
+                <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;font-size:11px;">
+                    <span style="display:flex;align-items:center;gap:3px;"><span style="width:8px;height:8px;border-radius:2px;background:#22c55e;"></span>谷薯类</span>
+                    <span style="display:flex;align-items:center;gap:3px;"><span style="width:8px;height:8px;border-radius:2px;background:#3b82f6;"></span>肉蛋类</span>
+                    <span style="display:flex;align-items:center;gap:3px;"><span style="width:8px;height:8px;border-radius:2px;background:#f59e0b;"></span>蔬菜类</span>
+                    <span style="display:flex;align-items:center;gap:3px;"><span style="width:8px;height:8px;border-radius:2px;background:#8b5cf6;"></span>豆奶类</span>
+                    <span style="display:flex;align-items:center;gap:3px;"><span style="width:8px;height:8px;border-radius:2px;background:#06b6d4;"></span>油脂类</span>
+                </div>
+                <div style="display:flex;gap:12px;margin-top:16px;flex-wrap:wrap;">
+                    <div style="flex:1;min-width:100px;background:#f0fdf4;border-radius:8px;padding:10px;text-align:center;">
+                        <div style="font-size:20px;font-weight:700;color:#166534;">95</div>
+                        <div style="font-size:12px;color:#15803d;">主食搭配</div>
+                    </div>
+                    <div style="flex:1;min-width:100px;background:#f0fdf4;border-radius:8px;padding:10px;text-align:center;">
+                        <div style="font-size:20px;font-weight:700;color:#166534;">92</div>
+                        <div style="font-size:12px;color:#15803d;">蛋白质</div>
+                    </div>
+                    <div style="flex:1;min-width:100px;background:#fef3c7;border-radius:8px;padding:10px;text-align:center;">
+                        <div style="font-size:20px;font-weight:700;color:#92400e;">78</div>
+                        <div style="font-size:12px;color:#b45309;">蔬果摄入</div>
+                    </div>
+                    <div style="flex:1;min-width:100px;background:#f0fdf4;border-radius:8px;padding:10px;text-align:center;">
+                        <div style="font-size:20px;font-weight:700;color:#166534;">88</div>
+                        <div style="font-size:12px;color:#15803d;">多样性</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 底部导航 -->
+        <nav class="bottom-nav">
+            <a href="index.html" class="bottom-nav-item">
+                <span class="bottom-nav-icon">🏠</span>
+                <span class="bottom-nav-label">首页</span>
+            </a>
+            <a href="order.html" class="bottom-nav-item">
+                <span class="bottom-nav-icon">🛒</span>
+                <span class="bottom-nav-label">点餐</span>
+            </a>
+            <a href="satisfaction.html" class="bottom-nav-item">
+                <span class="bottom-nav-icon">⭐</span>
+                <span class="bottom-nav-label">评价</span>
+            </a>
+            <a href="nutrition-report.html" class="bottom-nav-item active">
+                <span class="bottom-nav-icon">📊</span>
+                <span class="bottom-nav-label">报告</span>
+            </a>
+        </nav>
+    </div>
+</body>
+</html>

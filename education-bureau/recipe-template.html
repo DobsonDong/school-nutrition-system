@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>公共周食谱模板 - 中小学带量食谱系统</title>
+    <link rel="stylesheet" href="../shared/css/common.css">
+</head>
+<body>
+    <div class="layout">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <div class="logo-icon">🍱</div>
+                    <div>
+                        <div class="logo-text">智慧营养膳食平台</div>
+                        <div class="logo-subtext">教育局端</div>
+                    </div>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <div class="nav-section-title">数据监管</div>
+                    <a href="dashboard.html" class="nav-item"><span class="nav-item-icon">📊</span>数据驾驶舱</a>
+                    <a href="dining-data.html" class="nav-item"><span class="nav-item-icon">🍽️</span>学生就餐数据监管</a>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-title">内容管理</div>
+                    <a href="dish-library.html" class="nav-item"><span class="nav-item-icon">🥗</span>公共菜肴库管理</a>
+                    <a href="recipe-template.html" class="nav-item active"><span class="nav-item-icon">📋</span>公共周食谱模板</a>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-title">监测预警</div>
+                    <a href="warning-monitor.html" class="nav-item"><span class="nav-item-icon">⚠️</span>营养监测预警<span class="nav-item-badge">5</span></a>
+                </div>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="top-header">
+                <div class="header-left">
+                    <div class="breadcrumb">
+                        <a href="dashboard.html">首页</a>
+                        <span class="breadcrumb-separator">/</span>
+                        <span>公共周食谱模板</span>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <button class="header-btn">🔔</button>
+                    <button class="header-btn">⚙️</button>
+                    <div class="user-menu">
+                        <div class="user-avatar">张</div>
+                        <div class="user-info">
+                            <div class="user-name">张管理员</div>
+                            <div class="user-role">教育局营养科</div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="page-content">
+                <div class="page-header">
+                    <h1 class="page-title">公共周食谱模板</h1>
+                    <p class="page-subtitle">按季节、地域特色建立标准化周食谱模板，支持向辖区学校一键下发</p>
+                    <div class="page-actions">
+                        <button class="btn btn-primary">+ 新建模板</button>
+                        <button class="btn btn-secondary">📥 导入模板</button>
+                    </div>
+                </div>
+
+                <div class="grid grid-3" style="margin-bottom:24px;">
+                    <div class="stat-card">
+                        <div class="stat-icon blue">📋</div>
+                        <div class="stat-content">
+                            <div class="stat-label">模板总数</div>
+                            <div class="stat-value">24</div>
+                            <div class="stat-change"><span>涵盖四季</span></div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon green">📤</div>
+                        <div class="stat-content">
+                            <div class="stat-label">本月下发次数</div>
+                            <div class="stat-value">156</div>
+                            <div class="stat-change up"><span>↑</span><span>覆盖 89% 学校</span></div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon purple">📊</div>
+                        <div class="stat-content">
+                            <div class="stat-label">平均采纳率</div>
+                            <div class="stat-value">78.5%</div>
+                            <div class="stat-change up"><span>↑</span><span>较上月 +5.2%</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="display:flex;gap:16px;margin-bottom:24px;">
+                    <select class="form-select" style="width:140px;">
+                        <option>全部季节</option>
+                        <option>春季</option>
+                        <option>夏季</option>
+                        <option>秋季</option>
+                        <option>冬季</option>
+                    </select>
+                    <select class="form-select" style="width:140px;">
+                        <option>全部学段</option>
+                        <option>小学</option>
+                        <option>初中</option>
+                        <option>高中</option>
+                    </select>
+                    <div class="search-box">
+                        <span class="search-box-icon">🔍</span>
+                        <input type="text" class="form-input" placeholder="搜索模板名称..." style="width:280px;">
+                    </div>
+                </div>
+
+                <div class="grid grid-2">
+                    <div class="card">
+                        <div class="card-header">
+                            <div>
+                                <div class="card-title">🌸 春季营养食谱模板 - 小学版</div>
+                                <div class="card-subtitle">适合小学全年龄段 | 创建时间: 2024-01-10</div>
+                            </div>
+                            <span class="tag tag-green">已发布</span>
+                        </div>
+                        <div class="card-body">
+                            <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-bottom:16px;">
+                                <div style="text-align:center;padding:8px;background:#f3f4f6;border-radius:8px;"><div style="font-size:12px;color:#6b7280;">周一</div><div style="font-size:11px;margin-top:4px;">🍗🥬🍚</div></div>
+                                <div style="text-align:center;padding:8px;background:#f3f4f6;border-radius:8px;"><div style="font-size:12px;color:#6b7280;">周二</div><div style="font-size:11px;margin-top:4px;">🐟🍅🍚</div></div>
+                                <div style="text-align:center;padding:8px;background:#f3f4f6;border-radius:8px;"><div style="font-size:12px;color:#6b7280;">周三</div><div style="font-size:11px;margin-top:4px;">🥩🥒🍚</div></div>
+                                <div style="text-align:center;padding:8px;background:#f3f4f6;border-radius:8px;"><div style="font-size:12px;color:#6b7280;">周四</div><div style="font-size:11px;margin-top:4px;">🍤🥦🍚</div></div>
+                                <div style="text-align:center;padding:8px;background:#f3f4f6;border-radius:8px;"><div style="font-size:12px;color:#6b7280;">周五</div><div style="font-size:11px;margin-top:4px;">🍗🥕🍚</div></div>
+                                <div style="text-align:center;padding:8px;background:#f3f4f6;border-radius:8px;"><div style="font-size:12px;color:#6b7280;">周六</div><div style="font-size:11px;margin-top:4px;">-</div></div>
+                                <div style="text-align:center;padding:8px;background:#f3f4f6;border-radius:8px;"><div style="font-size:12px;color:#6b7280;">周日</div><div style="font-size:11px;margin-top:4px;">-</div></div>
+                            </div>
+                            <div style="display:flex;gap:16px;font-size:13px;color:#6b7280;">
+                                <span>💪 平均蛋白质: 28.5g</span>
+                                <span>🔥 平均能量: 685kcal</span>
+                                <span>采纳率: 82.3%</span>
+                            </div>
+                        </div>
+                        <div class="card-footer" style="display:flex;justify-content:space-between;">
+                            <button class="btn btn-ghost">👁️ 预览</button>
+                            <div style="display:flex;gap:8px;">
+                                <button class="btn btn-secondary">✏️ 编辑</button>
+                                <button class="btn btn-primary">📤 下发</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <div>
+                                <div class="card-title">☀️ 夏季清热食谱模板 - 小学版</div>
+                                <div class="card-subtitle">适合小学全年龄段 | 创建时间: 2024-01-08</div>
+                            </div>
+                            <span class="tag tag-green">已发布</span>
+                        </div>
+                        <div class="card-body">
+                            <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-bottom:16px;">
+                                <div style="text-align:center;padding:8px;background:#f3f4f6;border-radius:8px;"><div style="font-size:12px;color:#6b7280;">周一</div><div style="font-size:11px;margin-top:4px;">🐟🥒🍚</div></div>
+                                <div style="text-align:center;padding:8px;background:#f3f4f6;border-radius:8px;"><div style="font-size:12px;color:#6b7280;">周二</div><div style="font-size:11px;margin-top:4px;">🍗🥬🍚</div></div>
+                                <div style="text-align:center;padding:8px;background:#f3f4f6;border-radius:8px;"><div style="font-size:12px;color:#6b7280;">周三</div><div style="font-size:11px;margin-top:4px;">🥚🍅🍚</div></div>
+                                <div style="text-align:center;padding:8px;background:#f3f4f6;border-radius:8px;"><div style="font-size:12px;color:#6b7280;">周四</div><div style="font-size:11px;margin-top:4px;">🍤🥦🍚</div></div>
+                                <div style="text-align:center;padding:8px;background:#f3f4f6;border-radius:8px;"><div style="font-size:12px;color:#6b7280;">周五</div><div style="font-size:11px;margin-top:4px;">🥩🥕🍚</div></div>
+                                <div style="text-align:center;padding:8px;background:#f3f4f6;border-radius:8px;"><div style="font-size:12px;color:#6b7280;">周六</div><div style="font-size:11px;margin-top:4px;">-</div></div>
+                                <div style="text-align:center;padding:8px;background:#f3f4f6;border-radius:8px;"><div style="font-size:12px;color:#6b7280;">周日</div><div style="font-size:11px;margin-top:4px;">-</div></div>
+                            </div>
+                            <div style="display:flex;gap:16px;font-size:13px;color:#6b7280;">
+                                <span>💪 平均蛋白质: 26.8g</span>
+                                <span>🔥 平均能量: 652kcal</span>
+                                <span>采纳率: 76.5%</span>
+                            </div>
+                        </div>
+                        <div class="card-footer" style="display:flex;justify-content:space-between;">
+                            <button class="btn btn-ghost">👁️ 预览</button>
+                            <div style="display:flex;gap:8px;">
+                                <button class="btn btn-secondary">✏️ 编辑</button>
+                                <button class="btn btn-primary">📤 下发</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <div>
+                                <div class="card-title">🍂 秋季滋补食谱模板 - 初中版</div>
+                                <div class="card-subtitle">适合初中阶段 | 创建时间: 2024-01-05</div>
+                            </div>
+                            <span class="tag tag-orange">草稿</span>
+                        </div>
+                        <div class="card-body">
+                            <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-bottom:16px;">
+                                <div style="text-align:center;padding:8px;background:#f3f4f6;border-radius:8px;"><div style="font-size:12px;color:#6b7280;">周一</div><div style="font-size:11px;margin-top:4px;">🥩🥬🍚</div></div>
+                                <div style="text-align:center;padding:8px;background:#f3f4f6;border-radius:8px;"><div style="font-size:12px;color:#6b7280;">周二</div><div style="font-size:11px;margin-top:4px;">🍗🥕🍚</div></div>
+                                <div style="text-align:center;padding:8px;background:#f3f4f6;border-radius:8px;"><div style="font-size:12px;color:#6b7280;">周三</div><div style="font-size:11px;margin-top:4px;">🐟🥦🍚</div></div>
+                                <div style="text-align:center;padding:8px;background:#f3f4f6;border-radius:8px;"><div style="font-size:12px;color:#6b7280;">周四</div><div style="font-size:11px;margin-top:4px;">🍤🍅🍚</div></div>
+                                <div style="text-align:center;padding:8px;background:#f3f4f6;border-radius:8px;"><div style="font-size:12px;color:#6b7280;">周五</div><div style="font-size:11px;margin-top:4px;">🥚🥒🍚</div></div>
+                                <div style="text-align:center;padding:8px;background:#f3f4f6;border-radius:8px;"><div style="font-size:12px;color:#6b7280;">周六</div><div style="font-size:11px;margin-top:4px;">-</div></div>
+                                <div style="text-align:center;padding:8px;background:#f3f4f6;border-radius:8px;"><div style="font-size:12px;color:#6b7280;">周日</div><div style="font-size:11px;margin-top:4px;">-</div></div>
+                            </div>
+                            <div style="display:flex;gap:16px;font-size:13px;color:#6b7280;">
+                                <span>💪 平均蛋白质: 32.5g</span>
+                                <span>🔥 平均能量: 785kcal</span>
+                                <span>采纳率: -</span>
+                            </div>
+                        </div>
+                        <div class="card-footer" style="display:flex;justify-content:space-between;">
+                            <button class="btn btn-ghost">👁️ 预览</button>
+                            <div style="display:flex;gap:8px;">
+                                <button class="btn btn-secondary">✏️ 编辑</button>
+                                <button class="btn btn-primary">📤 发布</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <div>
+                                <div class="card-title">❄️ 冬季暖身食谱模板 - 高中版</div>
+                                <div class="card-subtitle">适合高中阶段 | 创建时间: 2024-01-03</div>
+                            </div>
+                            <span class="tag tag-green">已发布</span>
+                        </div>
+                        <div class="card-body">
+                            <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-bottom:16px;">
+                                <div style="text-align:center;padding:8px;background:#f3f4f6;border-radius:8px;"><div style="font-size:12px;color:#6b7280;">周一</div><div style="font-size:11px;margin-top:4px;">🍖🥬🍚</div></div>
+                                <div style="text-align:center;padding:8px;background:#f3f4f6;border-radius:8px;"><div style="font-size:12px;color:#6b7280;">周二</div><div style="font-size:11px;margin-top:4px;">🥩🥕🍚</div></div>
+                                <div style="text-align:center;padding:8px;background:#f3f4f6;border-radius:8px;"><div style="font-size:12px;color:#6b7280;">周三</div><div style="font-size:11px;margin-top:4px;">🍗🥦🍚</div></div>
+                                <div style="text-align:center;padding:8px;background:#f3f4f6;border-radius:8px;"><div style="font-size:12px;color:#6b7280;">周四</div><div style="font-size:11px;margin-top:4px;">🐟🍅🍚</div></div>
+                                <div style="text-align:center;padding:8px;background:#f3f4f6;border-radius:8px;"><div style="font-size:12px;color:#6b7280;">周五</div><div style="font-size:11px;margin-top:4px;">🍤🥒🍚</div></div>
+                                <div style="text-align:center;padding:8px;background:#f3f4f6;border-radius:8px;"><div style="font-size:12px;color:#6b7280;">周六</div><div style="font-size:11px;margin-top:4px;">-</div></div>
+                                <div style="text-align:center;padding:8px;background:#f3f4f6;border-radius:8px;"><div style="font-size:12px;color:#6b7280;">周日</div><div style="font-size:11px;margin-top:4px;">-</div></div>
+                            </div>
+                            <div style="display:flex;gap:16px;font-size:13px;color:#6b7280;">
+                                <span>💪 平均蛋白质: 35.2g</span>
+                                <span>🔥 平均能量: 825kcal</span>
+                                <span>采纳率: 71.8%</span>
+                            </div>
+                        </div>
+                        <div class="card-footer" style="display:flex;justify-content:space-between;">
+                            <button class="btn btn-ghost">👁️ 预览</button>
+                            <div style="display:flex;gap:8px;">
+                                <button class="btn btn-secondary">✏️ 编辑</button>
+                                <button class="btn btn-primary">📤 下发</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

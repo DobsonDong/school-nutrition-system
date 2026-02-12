@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>中小学带量食谱系统 - 入口</title>
+    <link rel="stylesheet" href="shared/css/common.css">
+    <style>
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+        .entry-container {
+            max-width: 800px;
+            width: 100%;
+        }
+        .entry-header {
+            text-align: center;
+            color: white;
+            margin-bottom: 48px;
+        }
+        .entry-logo {
+            font-size: 64px;
+            margin-bottom: 16px;
+        }
+        .entry-title {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .entry-subtitle {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+        .entry-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+        .entry-card {
+            background: white;
+            border-radius: 24px;
+            padding: 32px 24px;
+            text-align: center;
+            transition: all 0.3s;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+        }
+        .entry-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+        .entry-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            margin: 0 auto 20px;
+        }
+        .entry-icon.education { background: linear-gradient(135deg, #3b82f6, #06b6d4); }
+        .entry-icon.school { background: linear-gradient(135deg, #22c55e, #10b981); }
+        .entry-icon.parent { background: linear-gradient(135deg, #f59e0b, #ef4444); }
+        .entry-name {
+            font-size: 20px;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 8px;
+        }
+        .entry-desc {
+            font-size: 14px;
+            color: #6b7280;
+            line-height: 1.5;
+        }
+        .entry-features {
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid #f3f4f6;
+        }
+        .entry-feature {
+            font-size: 12px;
+            color: #667eea;
+            margin-bottom: 4px;
+        }
+        @media (max-width: 768px) {
+            .entry-grid {
+                grid-template-columns: 1fr;
+            }
+            .entry-title {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="entry-container">
+        <header class="entry-header">
+            <div class="entry-logo">🍱</div>
+            <h1 class="entry-title">中小学智慧营养膳食管理平台</h1>
+            <p class="entry-subtitle">G-B-C一体化营养膳食监管与服务平台</p>
+        </header>
+
+        <div class="entry-grid">
+            <a href="education-bureau/dashboard.html" class="entry-card">
+                <div class="entry-icon education">🏛️</div>
+                <div class="entry-name">教育局端</div>
+                <div class="entry-desc">辖区学校营养监管、公共菜肴库管理、数据驾驶舱</div>
+                <div class="entry-features">
+                    <div class="entry-feature">📊 数据驾驶舱</div>
+                    <div class="entry-feature">🥗 公共菜肴库</div>
+                    <div class="entry-feature">⚠️ 预警监测</div>
+                </div>
+            </a>
+
+            <a href="school/recipe-editor.html" class="entry-card">
+                <div class="entry-icon school">🏫</div>
+                <div class="entry-name">学校端</div>
+                <div class="entry-desc">周食谱编排、校本菜肴库、营养分析、学生档案</div>
+                <div class="entry-features">
+                    <div class="entry-feature">📅 智能编排</div>
+                    <div class="entry-feature">📊 营养分析</div>
+                    <div class="entry-feature">👨‍🎓 学生档案</div>
+                </div>
+            </a>
+
+            <a href="parent/index.html" class="entry-card">
+                <div class="entry-icon parent">👨‍👩‍👧</div>
+                <div class="entry-name">家长端</div>
+                <div class="entry-desc">查看食谱、点餐下单、满意度评价、营养报告</div>
+                <div class="entry-features">
+                    <div class="entry-feature">📅 周食谱</div>
+                    <div class="entry-feature">🛒 在线点餐</div>
+                    <div class="entry-feature">📊 营养报告</div>
+                </div>
+            </a>
+        </div>
+    </div>
+</body>
+</html>

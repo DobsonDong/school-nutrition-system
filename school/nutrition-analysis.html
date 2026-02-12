@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>营养分析报表 - 中小学带量食谱系统</title>
+    <link rel="stylesheet" href="../shared/css/common.css">
+</head>
+<body>
+    <div class="layout">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <div class="logo-icon">🍱</div>
+                    <div>
+                        <div class="logo-text">智慧营养膳食平台</div>
+                        <div class="logo-subtext">学校端 - 实验小学</div>
+                    </div>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <div class="nav-section-title">食谱管理</div>
+                    <a href="recipe-editor.html" class="nav-item"><span class="nav-item-icon">📅</span>周食谱编排</a>
+                    <a href="dish-library.html" class="nav-item"><span class="nav-item-icon">🥗</span>校本菜肴库</a>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-title">营养分析</div>
+                    <a href="nutrition-analysis.html" class="nav-item active"><span class="nav-item-icon">📊</span>营养分析报表</a>
+                    <a href="student-profile.html" class="nav-item"><span class="nav-item-icon">👨‍🎓</span>学生营养档案</a>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-title">数据看板</div>
+                    <a href="dashboard.html" class="nav-item"><span class="nav-item-icon">📈</span>校级数据看板</a>
+                </div>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="top-header">
+                <div class="header-left">
+                    <div class="breadcrumb">
+                        <a href="dashboard.html">首页</a>
+                        <span class="breadcrumb-separator">/</span>
+                        <span>营养分析报表</span>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <button class="header-btn">🔔</button>
+                    <div class="user-menu">
+                        <div class="user-avatar">李</div>
+                        <div class="user-info">
+                            <div class="user-name">李管理员</div>
+                            <div class="user-role">实验小学食堂</div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="page-content">
+                <div class="page-header">
+                    <h1 class="page-title">营养分析报表</h1>
+                    <p class="page-subtitle">多维度营养分析，与国标对比，全面了解学生营养摄入情况</p>
+                </div>
+
+                <div style="display:flex;gap:16px;margin-bottom:24px;">
+                    <select class="form-select" style="width:140px;">
+                        <option>本周</option>
+                        <option>上周</option>
+                        <option>本月</option>
+                        <option>本学期</option>
+                    </select>
+                    <select class="form-select" style="width:140px;">
+                        <option>全校</option>
+                        <option>一年级</option>
+                        <option>二年级</option>
+                        <option>三年级</option>
+                    </select>
+                    <button class="btn btn-secondary" style="margin-left:auto;">📤 导出报表</button>
+                </div>
+
+                <div class="grid grid-2" style="margin-bottom:24px;">
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">📊 营养达标情况</div></div>
+                        <div class="card-body" style="padding:20px;">
+                            <div style="display:flex;justify-content:center;margin-bottom:20px;">
+                                <div style="width:180px;height:180px;border-radius:50%;background:conic-gradient(#22c55e 0% 65%,#3b82f6 65% 80%,#f59e0b 80% 90%,#ef4444 90% 95%,#e5e7eb 95% 100%);display:flex;align-items:center;justify-content:center;">
+                                    <div style="width:120px;height:120px;background:white;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;">
+                                        <div style="font-size:28px;font-weight:700;color:#22c55e;">92.5%</div>
+                                        <div style="font-size:12px;color:#6b7280;">综合达标率</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+                                <div style="display:flex;align-items:center;gap:6px;font-size:12px;"><span style="width:10px;height:10px;border-radius:2px;background:#22c55e;"></span>优秀 65%</div>
+                                <div style="display:flex;align-items:center;gap:6px;font-size:12px;"><span style="width:10px;height:10px;border-radius:2px;background:#3b82f6;"></span>良好 15%</div>
+                                <div style="display:flex;align-items:center;gap:6px;font-size:12px;"><span style="width:10px;height:10px;border-radius:2px;background:#f59e0b;"></span>一般 10%</div>
+                                <div style="display:flex;align-items:center;gap:6px;font-size:12px;"><span style="width:10px;height:10px;border-radius:2px;background:#ef4444;"></span>待改进 5%</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">📈 与国标对比</div></div>
+                        <div class="card-body" style="padding:20px;">
+                            <div style="display:flex;flex-direction:column;gap:14px;">
+                                <div>
+                                    <div style="display:flex;justify-content:space-between;font-size:12px;color:#6b7280;margin-bottom:4px;"><span>能量</span><span>685 / 750 kcal</span></div>
+                                    <div style="height:20px;background:#f3f4f6;border-radius:10px;overflow:hidden;position:relative;">
+                                        <div style="width:91%;height:100%;background:linear-gradient(90deg,#3b82f6,#93c5fd);border-radius:10px;"></div>
+                                        <div style="position:absolute;right:10%;top:0;height:100%;width:2px;background:#ef4444;"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div style="display:flex;justify-content:space-between;font-size:12px;color:#6b7280;margin-bottom:4px;"><span>蛋白质</span><span>28.5 / 27.5 g</span></div>
+                                    <div style="height:20px;background:#f3f4f6;border-radius:10px;overflow:hidden;position:relative;">
+                                        <div style="width:100%;height:100%;background:linear-gradient(90deg,#22c55e,#86efac);border-radius:10px;"></div>
+                                        <div style="position:absolute;right:4%;top:0;height:100%;width:2px;background:#ef4444;"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div style="display:flex;justify-content:space-between;font-size:12px;color:#6b7280;margin-bottom:4px;"><span>脂肪</span><span>22.5 / 22.5 g</span></div>
+                                    <div style="height:20px;background:#f3f4f6;border-radius:10px;overflow:hidden;position:relative;">
+                                        <div style="width:100%;height:100%;background:linear-gradient(90deg,#22c55e,#86efac);border-radius:10px;"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div style="display:flex;justify-content:space-between;font-size:12px;color:#6b7280;margin-bottom:4px;"><span>钙</span><span>325 / 450 mg</span></div>
+                                    <div style="height:20px;background:#f3f4f6;border-radius:10px;overflow:hidden;position:relative;">
+                                        <div style="width:72%;height:100%;background:linear-gradient(90deg,#f59e0b,#fcd34d);border-radius:10px;"></div>
+                                        <div style="position:absolute;right:0;top:0;height:100%;width:2px;background:#ef4444;"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div style="display:flex;justify-content:space-between;font-size:12px;color:#6b7280;margin-bottom:4px;"><span>维C</span><span>38 / 50 mg</span></div>
+                                    <div style="height:20px;background:#f3f4f6;border-radius:10px;overflow:hidden;position:relative;">
+                                        <div style="width:76%;height:100%;background:linear-gradient(90deg,#f59e0b,#fcd34d);border-radius:10px;"></div>
+                                        <div style="position:absolute;right:0;top:0;height:100%;width:2px;background:#ef4444;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="display:flex;gap:16px;margin-top:12px;font-size:11px;color:#6b7280;">
+                                <span style="display:flex;align-items:center;gap:4px;"><span style="width:12px;height:2px;background:#ef4444;"></span>国标推荐值</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" style="margin-bottom:24px;">
+                    <div class="card-header"><div class="card-title">📋 营养素摄入明细</div></div>
+                    <div class="table-container">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>营养素</th>
+                                    <th>国家标准</th>
+                                    <th>实际平均摄入</th>
+                                    <th>达标率</th>
+                                    <th>状态</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style="font-weight:600;">🔥 能量 (kcal)</td>
+                                    <td>700-800</td>
+                                    <td>685</td>
+                                    <td>
+                                        <div style="display:flex;align-items:center;gap:8px;">
+                                            <div class="progress-bar" style="flex:1;max-width:100px;"><div class="progress-fill green" style="width:95%;"></div></div>
+                                            <span>95%</span>
+                                        </div>
+                                    </td>
+                                    <td><span class="tag tag-green">✅ 达标</span></td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight:600;">💪 蛋白质 (g)</td>
+                                    <td>25-30</td>
+                                    <td>28.5</td>
+                                    <td>
+                                        <div style="display:flex;align-items:center;gap:8px;">
+                                            <div class="progress-bar" style="flex:1;max-width:100px;"><div class="progress-fill green" style="width:98%;"></div></div>
+                                            <span>98%</span>
+                                        </div>
+                                    </td>
+                                    <td><span class="tag tag-green">✅ 达标</span></td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight:600;">🥑 脂肪 (g)</td>
+                                    <td>20-25</td>
+                                    <td>22.5</td>
+                                    <td>
+                                        <div style="display:flex;align-items:center;gap:8px;">
+                                            <div class="progress-bar" style="flex:1;max-width:100px;"><div class="progress-fill green" style="width:92%;"></div></div>
+                                            <span>92%</span>
+                                        </div>
+                                    </td>
+                                    <td><span class="tag tag-green">✅ 达标</span></td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight:600;">🌾 碳水化合物 (g)</td>
+                                    <td>90-110</td>
+                                    <td>95.2</td>
+                                    <td>
+                                        <div style="display:flex;align-items:center;gap:8px;">
+                                            <div class="progress-bar" style="flex:1;max-width:100px;"><div class="progress-fill green" style="width:88%;"></div></div>
+                                            <span>88%</span>
+                                        </div>
+                                    </td>
+                                    <td><span class="tag tag-green">✅ 达标</span></td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight:600;">🦴 钙 (mg)</td>
+                                    <td>400-500</td>
+                                    <td>325</td>
+                                    <td>
+                                        <div style="display:flex;align-items:center;gap:8px;">
+                                            <div class="progress-bar" style="flex:1;max-width:100px;"><div class="progress-fill orange" style="width:72%;"></div></div>
+                                            <span>72%</span>
+                                        </div>
+                                    </td>
+                                    <td><span class="tag tag-orange">⚠️ 偏低</span></td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight:600;">🩸 铁 (mg)</td>
+                                    <td>8-12</td>
+                                    <td>9.5</td>
+                                    <td>
+                                        <div style="display:flex;align-items:center;gap:8px;">
+                                            <div class="progress-bar" style="flex:1;max-width:100px;"><div class="progress-fill green" style="width:95%;"></div></div>
+                                            <span>95%</span>
+                                        </div>
+                                    </td>
+                                    <td><span class="tag tag-green">✅ 达标</span></td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight:600;">🥕 维生素A (μg)</td>
+                                    <td>400-600</td>
+                                    <td>485</td>
+                                    <td>
+                                        <div style="display:flex;align-items:center;gap:8px;">
+                                            <div class="progress-bar" style="flex:1;max-width:100px;"><div class="progress-fill green" style="width:97%;"></div></div>
+                                            <span>97%</span>
+                                        </div>
+                                    </td>
+                                    <td><span class="tag tag-green">✅ 达标</span></td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight:600;">🍊 维生素C (mg)</td>
+                                    <td>40-60</td>
+                                    <td>38</td>
+                                    <td>
+                                        <div style="display:flex;align-items:center;gap:8px;">
+                                            <div class="progress-bar" style="flex:1;max-width:100px;"><div class="progress-fill orange" style="width:76%;"></div></div>
+                                            <span>76%</span>
+                                        </div>
+                                    </td>
+                                    <td><span class="tag tag-orange">⚠️ 偏低</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header"><div class="card-title">🏫 各年级营养达标对比</div></div>
+                    <div class="card-body" style="padding:20px;">
+                        <div style="display:flex;align-items:flex-end;gap:16px;height:200px;padding:0 8px;">
+                            <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;">
+                                <div style="font-size:12px;font-weight:600;color:#22c55e;">96%</div>
+                                <div style="width:100%;height:96%;background:linear-gradient(180deg,#22c55e,#86efac);border-radius:6px 6px 0 0;"></div>
+                                <div style="font-size:12px;color:#6b7280;">一年级</div>
+                            </div>
+                            <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;">
+                                <div style="font-size:12px;font-weight:600;color:#22c55e;">94%</div>
+                                <div style="width:100%;height:94%;background:linear-gradient(180deg,#22c55e,#86efac);border-radius:6px 6px 0 0;"></div>
+                                <div style="font-size:12px;color:#6b7280;">二年级</div>
+                            </div>
+                            <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;">
+                                <div style="font-size:12px;font-weight:600;color:#22c55e;">93%</div>
+                                <div style="width:100%;height:93%;background:linear-gradient(180deg,#3b82f6,#93c5fd);border-radius:6px 6px 0 0;"></div>
+                                <div style="font-size:12px;color:#6b7280;">三年级</div>
+                            </div>
+                            <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;">
+                                <div style="font-size:12px;font-weight:600;color:#3b82f6;">91%</div>
+                                <div style="width:100%;height:91%;background:linear-gradient(180deg,#3b82f6,#93c5fd);border-radius:6px 6px 0 0;"></div>
+                                <div style="font-size:12px;color:#6b7280;">四年级</div>
+                            </div>
+                            <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;">
+                                <div style="font-size:12px;font-weight:600;color:#f59e0b;">89%</div>
+                                <div style="width:100%;height:89%;background:linear-gradient(180deg,#f59e0b,#fcd34d);border-radius:6px 6px 0 0;"></div>
+                                <div style="font-size:12px;color:#6b7280;">五年级</div>
+                            </div>
+                            <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;">
+                                <div style="font-size:12px;font-weight:600;color:#f59e0b;">88%</div>
+                                <div style="width:100%;height:88%;background:linear-gradient(180deg,#f59e0b,#fcd34d);border-radius:6px 6px 0 0;"></div>
+                                <div style="font-size:12px;color:#6b7280;">六年级</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

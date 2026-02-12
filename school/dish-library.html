@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>校本菜肴库 - 中小学带量食谱系统</title>
+    <link rel="stylesheet" href="../shared/css/common.css">
+</head>
+<body>
+    <div class="layout">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <div class="logo-icon">🍱</div>
+                    <div>
+                        <div class="logo-text">智慧营养膳食平台</div>
+                        <div class="logo-subtext">学校端 - 实验小学</div>
+                    </div>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <div class="nav-section-title">食谱管理</div>
+                    <a href="recipe-editor.html" class="nav-item"><span class="nav-item-icon">📅</span>周食谱编排</a>
+                    <a href="dish-library.html" class="nav-item active"><span class="nav-item-icon">🥗</span>校本菜肴库</a>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-title">营养分析</div>
+                    <a href="nutrition-analysis.html" class="nav-item"><span class="nav-item-icon">📊</span>营养分析报表</a>
+                    <a href="student-profile.html" class="nav-item"><span class="nav-item-icon">👨‍🎓</span>学生营养档案</a>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-title">数据看板</div>
+                    <a href="dashboard.html" class="nav-item"><span class="nav-item-icon">📈</span>校级数据看板</a>
+                </div>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="top-header">
+                <div class="header-left">
+                    <div class="breadcrumb">
+                        <a href="dashboard.html">首页</a>
+                        <span class="breadcrumb-separator">/</span>
+                        <span>校本菜肴库</span>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <button class="header-btn">🔔</button>
+                    <div class="user-menu">
+                        <div class="user-avatar">李</div>
+                        <div class="user-info">
+                            <div class="user-name">李管理员</div>
+                            <div class="user-role">实验小学食堂</div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="page-content">
+                <div class="page-header">
+                    <h1 class="page-title">校本菜肴库</h1>
+                    <p class="page-subtitle">引用公共菜肴库并支持校本化改编，管理学校特色菜品</p>
+                    <div class="page-actions">
+                        <button class="btn btn-primary">+ 新增校本菜肴</button>
+                        <button class="btn btn-secondary">📚 引用公共菜肴</button>
+                    </div>
+                </div>
+
+                <div class="grid grid-4" style="margin-bottom:24px;">
+                    <div class="stat-card">
+                        <div class="stat-icon blue">🥗</div>
+                        <div class="stat-content">
+                            <div class="stat-label">校本菜肴总数</div>
+                            <div class="stat-value">86</div>
+                            <div class="stat-change"><span>含32道特色菜</span></div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon green">📚</div>
+                        <div class="stat-content">
+                            <div class="stat-label">引用公共菜肴</div>
+                            <div class="stat-value">54</div>
+                            <div class="stat-change"><span>已校本化改编</span></div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon purple">⭐</div>
+                        <div class="stat-content">
+                            <div class="stat-label">特色菜肴</div>
+                            <div class="stat-value">32</div>
+                            <div class="stat-change"><span>学校独立建档</span></div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon orange">💰</div>
+                        <div class="stat-content">
+                            <div class="stat-label">平均成本</div>
+                            <div class="stat-value">5.2</div>
+                            <div class="stat-change"><span>元/餐</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" style="margin-bottom:24px;">
+                    <div class="card-body">
+                        <div style="display:flex;gap:16px;align-items:center;">
+                            <div class="search-box">
+                                <span class="search-box-icon">🔍</span>
+                                <input type="text" class="form-input" placeholder="搜索菜肴名称..." style="width:280px;">
+                            </div>
+                            <select class="form-select" style="width:140px;">
+                                <option>全部来源</option>
+                                <option>校本特色</option>
+                                <option>公共引用</option>
+                            </select>
+                            <select class="form-select" style="width:140px;">
+                                <option>全部餐别</option>
+                                <option>早餐</option>
+                                <option>午餐</option>
+                                <option>晚餐</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-4">
+                    <div class="dish-card">
+                        <div style="height:160px;background:linear-gradient(135deg,#fbbf24,#f59e0b);display:flex;align-items:center;justify-content:center;font-size:64px;">🥟</div>
+                        <div class="dish-content">
+                            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+                                <div class="dish-name">实验小学特色水饺</div>
+                                <span class="tag tag-purple">校本特色</span>
+                            </div>
+                            <div class="dish-tags">
+                                <span class="nutrition-tag energy">🔥 185kcal</span>
+                                <span class="nutrition-tag protein">💪 8.5g</span>
+                            </div>
+                            <div style="display:flex;justify-content:space-between;align-items:center;margin-top:12px;">
+                                <span style="font-size:13px;color:#6b7280;">💰 4.5元</span>
+                                <div class="actions">
+                                    <button class="btn btn-sm btn-ghost">✏️</button>
+                                    <button class="btn btn-sm btn-ghost">🗑️</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dish-card">
+                        <div style="height:160px;background:linear-gradient(135deg,#22c55e,#16a34a);display:flex;align-items:center;justify-content:center;font-size:64px;">🍜</div>
+                        <div class="dish-content">
+                            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+                                <div class="dish-name">家常肉丝面</div>
+                                <span class="tag tag-blue">公共引用</span>
+                            </div>
+                            <div class="dish-tags">
+                                <span class="nutrition-tag energy">🔥 245kcal</span>
+                                <span class="nutrition-tag protein">💪 12.5g</span>
+                            </div>
+                            <div style="display:flex;justify-content:space-between;align-items:center;margin-top:12px;">
+                                <span style="font-size:13px;color:#6b7280;">💰 5.0元</span>
+                                <div class="actions">
+                                    <button class="btn btn-sm btn-ghost">✏️</button>
+                                    <button class="btn btn-sm btn-ghost">🗑️</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dish-card">
+                        <div style="height:160px;background:linear-gradient(135deg,#3b82f6,#2563eb);display:flex;align-items:center;justify-content:center;font-size:64px;">🍛</div>
+                        <div class="dish-content">
+                            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+                                <div class="dish-name">咖喱鸡肉饭</div>
+                                <span class="tag tag-purple">校本特色</span>
+                            </div>
+                            <div class="dish-tags">
+                                <span class="nutrition-tag energy">🔥 325kcal</span>
+                                <span class="nutrition-tag protein">💪 18.2g</span>
+                            </div>
+                            <div style="display:flex;justify-content:space-between;align-items:center;margin-top:12px;">
+                                <span style="font-size:13px;color:#6b7280;">💰 6.5元</span>
+                                <div class="actions">
+                                    <button class="btn btn-sm btn-ghost">✏️</button>
+                                    <button class="btn btn-sm btn-ghost">🗑️</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dish-card">
+                        <div style="height:160px;background:linear-gradient(135deg,#a855f7,#7c3aed);display:flex;align-items:center;justify-content:center;font-size:64px;">🥗</div>
+                        <div class="dish-content">
+                            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+                                <div class="dish-name">五彩蔬菜沙拉</div>
+                                <span class="tag tag-blue">公共引用</span>
+                            </div>
+                            <div class="dish-tags">
+                                <span class="nutrition-tag energy">🔥 85kcal</span>
+                                <span class="nutrition-tag protein">💪 3.2g</span>
+                            </div>
+                            <div style="display:flex;justify-content:space-between;align-items:center;margin-top:12px;">
+                                <span style="font-size:13px;color:#6b7280;">💰 3.5元</span>
+                                <div class="actions">
+                                    <button class="btn btn-sm btn-ghost">✏️</button>
+                                    <button class="btn btn-sm btn-ghost">🗑️</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

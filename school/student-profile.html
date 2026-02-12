@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>学生营养档案 - 中小学带量食谱系统</title>
+    <link rel="stylesheet" href="../shared/css/common.css">
+</head>
+<body>
+    <div class="layout">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <div class="logo-icon">🍱</div>
+                    <div>
+                        <div class="logo-text">智慧营养膳食平台</div>
+                        <div class="logo-subtext">学校端 - 实验小学</div>
+                    </div>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <div class="nav-section-title">食谱管理</div>
+                    <a href="recipe-editor.html" class="nav-item"><span class="nav-item-icon">📅</span>周食谱编排</a>
+                    <a href="dish-library.html" class="nav-item"><span class="nav-item-icon">🥗</span>校本菜肴库</a>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-title">营养分析</div>
+                    <a href="nutrition-analysis.html" class="nav-item"><span class="nav-item-icon">📊</span>营养分析报表</a>
+                    <a href="student-profile.html" class="nav-item active"><span class="nav-item-icon">👨‍🎓</span>学生营养档案</a>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-title">数据看板</div>
+                    <a href="dashboard.html" class="nav-item"><span class="nav-item-icon">📈</span>校级数据看板</a>
+                </div>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="top-header">
+                <div class="header-left">
+                    <div class="breadcrumb">
+                        <a href="dashboard.html">首页</a>
+                        <span class="breadcrumb-separator">/</span>
+                        <span>学生营养档案</span>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <button class="header-btn">🔔</button>
+                    <div class="user-menu">
+                        <div class="user-avatar">李</div>
+                        <div class="user-info">
+                            <div class="user-name">李管理员</div>
+                            <div class="user-role">实验小学食堂</div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="page-content">
+                <div class="page-header">
+                    <h1 class="page-title">学生营养档案</h1>
+                    <p class="page-subtitle">学生个体营养档案管理，追踪摄入情况，预警营养异常</p>
+                </div>
+
+                <div class="card" style="margin-bottom:24px;">
+                    <div class="card-body">
+                        <div style="display:flex;gap:16px;align-items:center;">
+                            <div class="search-box">
+                                <span class="search-box-icon">🔍</span>
+                                <input type="text" class="form-input" placeholder="搜索学生姓名、学号..." style="width:280px;">
+                            </div>
+                            <select class="form-select" style="width:120px;">
+                                <option>全部年级</option>
+                                <option>一年级</option>
+                                <option>二年级</option>
+                                <option>三年级</option>
+                            </select>
+                            <select class="form-select" style="width:120px;">
+                                <option>全部班级</option>
+                                <option>一班</option>
+                                <option>二班</option>
+                                <option>三班</option>
+                            </select>
+                            <select class="form-select" style="width:140px;">
+                                <option>全部状态</option>
+                                <option>营养正常</option>
+                                <option>营养不良</option>
+                                <option>营养过剩</option>
+                                <option>过敏特殊餐</option>
+                            </select>
+                            <button class="btn btn-secondary" style="margin-left:auto;">📤 导出档案</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-4" style="margin-bottom:24px;">
+                    <div class="stat-card">
+                        <div class="stat-icon blue">👨‍🎓</div>
+                        <div class="stat-content">
+                            <div class="stat-label">学生总数</div>
+                            <div class="stat-value">2,156</div>
+                            <div class="stat-change"><span>覆盖全校</span></div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon green">✅</div>
+                        <div class="stat-content">
+                            <div class="stat-label">营养正常</div>
+                            <div class="stat-value">1,892</div>
+                            <div class="stat-change up"><span>87.8%</span></div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon orange">⚠️</div>
+                        <div class="stat-content">
+                            <div class="stat-label">营养不良预警</div>
+                            <div class="stat-value">156</div>
+                            <div class="stat-change"><span>需关注</span></div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon red">🚨</div>
+                        <div class="stat-content">
+                            <div class="stat-label">营养过剩预警</div>
+                            <div class="stat-value">108</div>
+                            <div class="stat-change"><span>需干预</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">学生营养档案列表</div>
+                        <div style="font-size:13px;color:#6b7280;">共 2,156 名学生</div>
+                    </div>
+                    <div class="table-container">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>学号</th>
+                                    <th>姓名</th>
+                                    <th>班级</th>
+                                    <th>身高/体重</th>
+                                    <th>BMI</th>
+                                    <th>过敏/禁忌</th>
+                                    <th>本周就餐</th>
+                                    <th>营养状态</th>
+                                    <th>预警</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2024010101</td>
+                                    <td style="font-weight:600;">张小明</td>
+                                    <td>三年级二班</td>
+                                    <td>135cm / 32kg</td>
+                                    <td><span style="color:#22c55e;">17.5 (正常)</span></td>
+                                    <td>-</td>
+                                    <td>5/5 天</td>
+                                    <td><span class="tag tag-green">✅ 营养正常</span></td>
+                                    <td>-</td>
+                                    <td><button class="btn btn-sm btn-ghost">👁️ 查看</button></td>
+                                </tr>
+                                <tr>
+                                    <td>2024010102</td>
+                                    <td style="font-weight:600;">李小红</td>
+                                    <td>三年级二班</td>
+                                    <td>138cm / 28kg</td>
+                                    <td><span style="color:#f59e0b;">14.7 (偏瘦)</span></td>
+                                    <td>-</td>
+                                    <td>4/5 天</td>
+                                    <td><span class="tag tag-orange">⚠️ 营养不良</span></td>
+                                    <td><span class="tag tag-orange">蛋白质不足</span></td>
+                                    <td><button class="btn btn-sm btn-ghost">👁️ 查看</button></td>
+                                </tr>
+                                <tr>
+                                    <td>2024010103</td>
+                                    <td style="font-weight:600;">王小强</td>
+                                    <td>三年级二班</td>
+                                    <td>140cm / 45kg</td>
+                                    <td><span style="color:#ef4444;">22.9 (超重)</span></td>
+                                    <td>-</td>
+                                    <td>5/5 天</td>
+                                    <td><span class="tag tag-red">🚨 营养过剩</span></td>
+                                    <td><span class="tag tag-red">能量超标</span></td>
+                                    <td><button class="btn btn-sm btn-ghost">👁️ 查看</button></td>
+                                </tr>
+                                <tr>
+                                    <td>2024010104</td>
+                                    <td style="font-weight:600;">赵小芳</td>
+                                    <td>三年级二班</td>
+                                    <td>136cm / 30kg</td>
+                                    <td><span style="color:#22c55e;">16.2 (正常)</span></td>
+                                    <td><span class="tag tag-red">🥚 鸡蛋</span></td>
+                                    <td>5/5 天</td>
+                                    <td><span class="tag tag-green">✅ 营养正常</span></td>
+                                    <td><span class="tag tag-blue">特殊餐</span></td>
+                                    <td><button class="btn btn-sm btn-ghost">👁️ 查看</button></td>
+                                </tr>
+                                <tr>
+                                    <td>2024010105</td>
+                                    <td style="font-weight:600;">刘小军</td>
+                                    <td>三年级二班</td>
+                                    <td>134cm / 31kg</td>
+                                    <td><span style="color:#22c55e;">17.3 (正常)</span></td>
+                                    <td><span class="tag tag-red">🦐 海鲜</span></td>
+                                    <td>3/5 天</td>
+                                    <td><span class="tag tag-green">✅ 营养正常</span></td>
+                                    <td><span class="tag tag-blue">特殊餐</span></td>
+                                    <td><button class="btn btn-sm btn-ghost">👁️ 查看</button></td>
+                                </tr>
+                                <tr>
+                                    <td>2024010106</td>
+                                    <td style="font-weight:600;">陈小丽</td>
+                                    <td>三年级二班</td>
+                                    <td>137cm / 29kg</td>
+                                    <td><span style="color:#f59e0b;">15.4 (偏瘦)</span></td>
+                                    <td>-</td>
+                                    <td>5/5 天</td>
+                                    <td><span class="tag tag-orange">⚠️ 营养不良</span></td>
+                                    <td><span class="tag tag-orange">钙摄入不足</span></td>
+                                    <td><button class="btn btn-sm btn-ghost">👁️ 查看</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="card-footer" style="display:flex;justify-content:space-between;align-items:center;">
+                        <div style="font-size:13px;color:#6b7280;">显示 1-6 条，共 2,156 条</div>
+                        <div class="pagination">
+                            <button class="page-btn" disabled>←</button>
+                            <button class="page-btn active">1</button>
+                            <button class="page-btn">2</button>
+                            <button class="page-btn">3</button>
+                            <span style="padding:0 8px;">...</span>
+                            <button class="page-btn">360</button>
+                            <button class="page-btn">→</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

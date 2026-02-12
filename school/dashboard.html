@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>校级数据看板 - 中小学带量食谱系统</title>
+    <link rel="stylesheet" href="../shared/css/common.css">
+    <style>
+        .chart-bar-group { display: flex; align-items: flex-end; gap: 6px; height: 160px; padding: 0 8px; }
+        .chart-bar-item { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px; }
+        .chart-bar { width: 100%; border-radius: 4px 4px 0 0; transition: height 0.5s ease; min-width: 20px; }
+        .chart-bar-label { font-size: 11px; color: var(--gray-500); }
+        .chart-bar-value { font-size: 11px; font-weight: 600; color: var(--gray-700); }
+        .donut-chart { width: 140px; height: 140px; border-radius: 50%; position: relative; display: flex; align-items: center; justify-content: center; }
+        .donut-center { width: 90px; height: 90px; background: white; border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        .donut-value { font-size: 24px; font-weight: 700; color: var(--gray-900); }
+        .donut-label { font-size: 11px; color: var(--gray-500); }
+        .mini-bar { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+        .mini-bar-label { width: 70px; font-size: 13px; color: var(--gray-600); flex-shrink: 0; }
+        .mini-bar-track { flex: 1; height: 12px; background: var(--gray-100); border-radius: 6px; overflow: hidden; }
+        .mini-bar-fill { height: 100%; border-radius: 6px; transition: width 0.5s ease; }
+        .mini-bar-value { width: 45px; font-size: 13px; font-weight: 600; text-align: right; flex-shrink: 0; }
+        .trend-row { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--gray-100); }
+        .trend-row:last-child { border-bottom: none; }
+        .trend-icon { width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+        .trend-info { flex: 1; }
+        .trend-name { font-size: 13px; font-weight: 500; }
+        .trend-desc { font-size: 12px; color: var(--gray-500); }
+        .trend-value { font-size: 14px; font-weight: 600; }
+    </style>
+</head>
+<body>
+    <div class="layout">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <div class="logo-icon">🍱</div>
+                    <div>
+                        <div class="logo-text">智慧营养膳食平台</div>
+                        <div class="logo-subtext">学校端 - 实验小学</div>
+                    </div>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <div class="nav-section-title">食谱管理</div>
+                    <a href="recipe-editor.html" class="nav-item"><span class="nav-item-icon">📅</span>周食谱编排</a>
+                    <a href="dish-library.html" class="nav-item"><span class="nav-item-icon">🥗</span>校本菜肴库</a>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-title">营养分析</div>
+                    <a href="nutrition-analysis.html" class="nav-item"><span class="nav-item-icon">📊</span>营养分析报表</a>
+                    <a href="student-profile.html" class="nav-item"><span class="nav-item-icon">👨‍🎓</span>学生营养档案</a>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-title">数据看板</div>
+                    <a href="dashboard.html" class="nav-item active"><span class="nav-item-icon">📈</span>校级数据看板</a>
+                </div>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="top-header">
+                <div class="header-left">
+                    <div class="breadcrumb">
+                        <a href="dashboard.html">首页</a>
+                        <span class="breadcrumb-separator">/</span>
+                        <span>校级数据看板</span>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <button class="header-btn">🔔</button>
+                    <div class="user-menu">
+                        <div class="user-avatar">李</div>
+                        <div class="user-info">
+                            <div class="user-name">李管理员</div>
+                            <div class="user-role">实验小学食堂</div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="page-content">
+                <div class="page-header">
+                    <div style="display:flex;justify-content:space-between;align-items:center;">
+                        <div>
+                            <h1 class="page-title">校级数据看板</h1>
+                            <p class="page-subtitle">实验小学营养膳食数据全景，实时掌握学校营养状况</p>
+                        </div>
+                        <div style="display:flex;gap:12px;align-items:center;">
+                            <select class="form-select" style="width:140px;">
+                                <option>本周</option>
+                                <option>上周</option>
+                                <option>本月</option>
+                                <option>本学期</option>
+                            </select>
+                            <button class="btn btn-secondary">📤 导出报告</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 核心指标 -->
+                <div class="grid grid-5" style="margin-bottom:24px;">
+                    <div class="stat-card">
+                        <div class="stat-icon blue">👨‍🎓</div>
+                        <div class="stat-content">
+                            <div class="stat-label">在校学生</div>
+                            <div class="stat-value">2,156</div>
+                            <div class="stat-change"><span>42个班级</span></div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon green">🍽️</div>
+                        <div class="stat-content">
+                            <div class="stat-label">本周就餐率</div>
+                            <div class="stat-value">88.7%</div>
+                            <div class="stat-change up"><span>↑</span><span>+2.1%</span></div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon orange">✅</div>
+                        <div class="stat-content">
+                            <div class="stat-label">营养达标率</div>
+                            <div class="stat-value">95.2%</div>
+                            <div class="stat-change up"><span>↑</span><span>+1.3%</span></div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon purple">⭐</div>
+                        <div class="stat-content">
+                            <div class="stat-label">家长满意度</div>
+                            <div class="stat-value">4.6</div>
+                            <div class="stat-change"><span>/5.0 分</span></div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background:#cffafe;">🗑️</div>
+                        <div class="stat-content">
+                            <div class="stat-label">本周剩餐率</div>
+                            <div class="stat-value">12.5%</div>
+                            <div class="stat-change down"><span>↓</span><span>-1.8%</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-2" style="margin-bottom:24px;">
+                    <!-- 本周就餐率趋势 -->
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">📈 本周各日就餐率</div></div>
+                        <div class="card-body">
+                            <div class="chart-bar-group">
+                                <div class="chart-bar-item">
+                                    <div class="chart-bar-value">87%</div>
+                                    <div class="chart-bar" style="height:87%;background:linear-gradient(180deg,#3b82f6,#93c5fd);"></div>
+                                    <div class="chart-bar-label">周一</div>
+                                </div>
+                                <div class="chart-bar-item">
+                                    <div class="chart-bar-value">89%</div>
+                                    <div class="chart-bar" style="height:89%;background:linear-gradient(180deg,#3b82f6,#93c5fd);"></div>
+                                    <div class="chart-bar-label">周二</div>
+                                </div>
+                                <div class="chart-bar-item">
+                                    <div class="chart-bar-value">91%</div>
+                                    <div class="chart-bar" style="height:91%;background:linear-gradient(180deg,#3b82f6,#93c5fd);"></div>
+                                    <div class="chart-bar-label">周三</div>
+                                </div>
+                                <div class="chart-bar-item">
+                                    <div class="chart-bar-value">88%</div>
+                                    <div class="chart-bar" style="height:88%;background:linear-gradient(180deg,#3b82f6,#93c5fd);"></div>
+                                    <div class="chart-bar-label">周四</div>
+                                </div>
+                                <div class="chart-bar-item">
+                                    <div class="chart-bar-value">86%</div>
+                                    <div class="chart-bar" style="height:86%;background:linear-gradient(180deg,#3b82f6,#93c5fd);"></div>
+                                    <div class="chart-bar-label">周五</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 营养素达标情况 -->
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">🎯 营养素达标情况</div></div>
+                        <div class="card-body">
+                            <div class="mini-bar">
+                                <div class="mini-bar-label">🔥 能量</div>
+                                <div class="mini-bar-track"><div class="mini-bar-fill" style="width:95%;background:var(--primary);"></div></div>
+                                <div class="mini-bar-value" style="color:var(--success);">95%</div>
+                            </div>
+                            <div class="mini-bar">
+                                <div class="mini-bar-label">💪 蛋白质</div>
+                                <div class="mini-bar-track"><div class="mini-bar-fill" style="width:98%;background:var(--primary);"></div></div>
+                                <div class="mini-bar-value" style="color:var(--success);">98%</div>
+                            </div>
+                            <div class="mini-bar">
+                                <div class="mini-bar-label">🥑 脂肪</div>
+                                <div class="mini-bar-track"><div class="mini-bar-fill" style="width:92%;background:var(--success);"></div></div>
+                                <div class="mini-bar-value" style="color:var(--success);">92%</div>
+                            </div>
+                            <div class="mini-bar">
+                                <div class="mini-bar-label">🌾 碳水</div>
+                                <div class="mini-bar-track"><div class="mini-bar-fill" style="width:88%;background:var(--success);"></div></div>
+                                <div class="mini-bar-value" style="color:var(--success);">88%</div>
+                            </div>
+                            <div class="mini-bar">
+                                <div class="mini-bar-label">🦴 钙</div>
+                                <div class="mini-bar-track"><div class="mini-bar-fill" style="width:72%;background:var(--accent);"></div></div>
+                                <div class="mini-bar-value" style="color:var(--accent);">72%</div>
+                            </div>
+                            <div class="mini-bar">
+                                <div class="mini-bar-label">🩸 铁</div>
+                                <div class="mini-bar-track"><div class="mini-bar-fill" style="width:95%;background:var(--primary);"></div></div>
+                                <div class="mini-bar-value" style="color:var(--success);">95%</div>
+                            </div>
+                            <div class="mini-bar">
+                                <div class="mini-bar-label">🍊 维C</div>
+                                <div class="mini-bar-track"><div class="mini-bar-fill" style="width:76%;background:var(--accent);"></div></div>
+                                <div class="mini-bar-value" style="color:var(--accent);">76%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-3" style="margin-bottom:24px;">
+                    <!-- 学生营养状态分布 -->
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">👨‍🎓 学生营养状态分布</div></div>
+                        <div class="card-body" style="display:flex;flex-direction:column;align-items:center;gap:16px;">
+                            <div class="donut-chart" style="background:conic-gradient(#22c55e 0% 78%,#f59e0b 78% 85%,#ef4444 85% 90%,#3b82f6 90% 100%);">
+                                <div class="donut-center">
+                                    <div class="donut-value">2,156</div>
+                                    <div class="donut-label">学生总数</div>
+                                </div>
+                            </div>
+                            <div style="display:flex;gap:16px;flex-wrap:wrap;justify-content:center;">
+                                <div style="display:flex;align-items:center;gap:6px;font-size:13px;"><span style="width:10px;height:10px;border-radius:2px;background:#22c55e;"></span>正常 78%</div>
+                                <div style="display:flex;align-items:center;gap:6px;font-size:13px;"><span style="width:10px;height:10px;border-radius:2px;background:#f59e0b;"></span>偏瘦 7%</div>
+                                <div style="display:flex;align-items:center;gap:6px;font-size:13px;"><span style="width:10px;height:10px;border-radius:2px;background:#ef4444;"></span>超重 5%</div>
+                                <div style="display:flex;align-items:center;gap:6px;font-size:13px;"><span style="width:10px;height:10px;border-radius:2px;background:#3b82f6;"></span>特殊餐 10%</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 各年级就餐率对比 -->
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">🏫 各年级就餐率</div></div>
+                        <div class="card-body">
+                            <div class="chart-bar-group" style="height:180px;">
+                                <div class="chart-bar-item">
+                                    <div class="chart-bar-value">92%</div>
+                                    <div class="chart-bar" style="height:92%;background:linear-gradient(180deg,#22c55e,#86efac);"></div>
+                                    <div class="chart-bar-label">一年级</div>
+                                </div>
+                                <div class="chart-bar-item">
+                                    <div class="chart-bar-value">90%</div>
+                                    <div class="chart-bar" style="height:90%;background:linear-gradient(180deg,#22c55e,#86efac);"></div>
+                                    <div class="chart-bar-label">二年级</div>
+                                </div>
+                                <div class="chart-bar-item">
+                                    <div class="chart-bar-value">89%</div>
+                                    <div class="chart-bar" style="height:89%;background:linear-gradient(180deg,#22c55e,#86efac);"></div>
+                                    <div class="chart-bar-label">三年级</div>
+                                </div>
+                                <div class="chart-bar-item">
+                                    <div class="chart-bar-value">87%</div>
+                                    <div class="chart-bar" style="height:87%;background:linear-gradient(180deg,#f59e0b,#fcd34d);"></div>
+                                    <div class="chart-bar-label">四年级</div>
+                                </div>
+                                <div class="chart-bar-item">
+                                    <div class="chart-bar-value">86%</div>
+                                    <div class="chart-bar" style="height:86%;background:linear-gradient(180deg,#f59e0b,#fcd34d);"></div>
+                                    <div class="chart-bar-label">五年级</div>
+                                </div>
+                                <div class="chart-bar-item">
+                                    <div class="chart-bar-value">85%</div>
+                                    <div class="chart-bar" style="height:85%;background:linear-gradient(180deg,#f59e0b,#fcd34d);"></div>
+                                    <div class="chart-bar-label">六年级</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 预警与待办 -->
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">⚠️ 预警与待办</div></div>
+                        <div class="card-body">
+                            <div class="trend-row">
+                                <div class="trend-icon" style="background:#fee2e2;">🚨</div>
+                                <div class="trend-info">
+                                    <div class="trend-name">钙摄入偏低</div>
+                                    <div class="trend-desc">连续3天低于推荐值</div>
+                                </div>
+                                <span class="tag tag-red">紧急</span>
+                            </div>
+                            <div class="trend-row">
+                                <div class="trend-icon" style="background:#fef3c7;">⚠️</div>
+                                <div class="trend-info">
+                                    <div class="trend-name">维C摄入不足</div>
+                                    <div class="trend-desc">建议增加水果蔬菜</div>
+                                </div>
+                                <span class="tag tag-orange">注意</span>
+                            </div>
+                            <div class="trend-row">
+                                <div class="trend-icon" style="background:#dbeafe;">📋</div>
+                                <div class="trend-info">
+                                    <div class="trend-name">下周食谱待编排</div>
+                                    <div class="trend-desc">截止日期: 周五</div>
+                                </div>
+                                <span class="tag tag-blue">待办</span>
+                            </div>
+                            <div class="trend-row">
+                                <div class="trend-icon" style="background:#d1fae5;">✅</div>
+                                <div class="trend-info">
+                                    <div class="trend-name">本周食谱已审核</div>
+                                    <div class="trend-desc">审核通过，营养达标</div>
+                                </div>
+                                <span class="tag tag-green">完成</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 热门菜品与满意度 -->
+                <div class="grid grid-2">
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">🔥 本周热门菜品 TOP5</div></div>
+                        <div class="card-body">
+                            <div class="trend-row">
+                                <div style="width:28px;height:28px;background:linear-gradient(135deg,#fbbf24,#f59e0b);border-radius:6px;display:flex;align-items:center;justify-content:center;font-weight:700;color:white;font-size:13px;flex-shrink:0;">1</div>
+                                <div class="trend-info">
+                                    <div class="trend-name">红烧鸡腿</div>
+                                    <div class="trend-desc">选择率 92% | 剩餐率 5%</div>
+                                </div>
+                                <div class="trend-value" style="color:#22c55e;">92%</div>
+                            </div>
+                            <div class="trend-row">
+                                <div style="width:28px;height:28px;background:linear-gradient(135deg,#94a3b8,#64748b);border-radius:6px;display:flex;align-items:center;justify-content:center;font-weight:700;color:white;font-size:13px;flex-shrink:0;">2</div>
+                                <div class="trend-info">
+                                    <div class="trend-name">糖醋排骨</div>
+                                    <div class="trend-desc">选择率 88% | 剩餐率 8%</div>
+                                </div>
+                                <div class="trend-value" style="color:#22c55e;">88%</div>
+                            </div>
+                            <div class="trend-row">
+                                <div style="width:28px;height:28px;background:linear-gradient(135deg,#f87171,#ef4444);border-radius:6px;display:flex;align-items:center;justify-content:center;font-weight:700;color:white;font-size:13px;flex-shrink:0;">3</div>
+                                <div class="trend-info">
+                                    <div class="trend-name">白灼虾</div>
+                                    <div class="trend-desc">选择率 85% | 剩餐率 6%</div>
+                                </div>
+                                <div class="trend-value" style="color:#22c55e;">85%</div>
+                            </div>
+                            <div class="trend-row">
+                                <div style="width:28px;height:28px;background:#e5e7eb;border-radius:6px;display:flex;align-items:center;justify-content:center;font-weight:700;color:#6b7280;font-size:13px;flex-shrink:0;">4</div>
+                                <div class="trend-info">
+                                    <div class="trend-name">番茄炒蛋</div>
+                                    <div class="trend-desc">选择率 82% | 剩餐率 10%</div>
+                                </div>
+                                <div class="trend-value" style="color:#22c55e;">82%</div>
+                            </div>
+                            <div class="trend-row">
+                                <div style="width:28px;height:28px;background:#e5e7eb;border-radius:6px;display:flex;align-items:center;justify-content:center;font-weight:700;color:#6b7280;font-size:13px;flex-shrink:0;">5</div>
+                                <div class="trend-info">
+                                    <div class="trend-name">清蒸鲈鱼</div>
+                                    <div class="trend-desc">选择率 78% | 剩餐率 12%</div>
+                                </div>
+                                <div class="trend-value" style="color:#f59e0b;">78%</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">⭐ 家长满意度评价</div></div>
+                        <div class="card-body">
+                            <div style="display:flex;align-items:center;gap:24px;margin-bottom:20px;">
+                                <div style="text-align:center;">
+                                    <div style="font-size:48px;font-weight:700;color:var(--primary);">4.6</div>
+                                    <div style="font-size:13px;color:var(--gray-500);">综合评分 / 5.0</div>
+                                    <div style="font-size:20px;margin-top:4px;">⭐⭐⭐⭐⭐</div>
+                                </div>
+                                <div style="flex:1;">
+                                    <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;font-size:13px;">
+                                        <span style="width:50px;">口味</span>
+                                        <div style="flex:1;height:8px;background:var(--gray-100);border-radius:4px;overflow:hidden;"><div style="width:88%;height:100%;background:#fbbf24;border-radius:4px;"></div></div>
+                                        <span style="width:30px;text-align:right;">4.4</span>
+                                    </div>
+                                    <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;font-size:13px;">
+                                        <span style="width:50px;">份量</span>
+                                        <div style="flex:1;height:8px;background:var(--gray-100);border-radius:4px;overflow:hidden;"><div style="width:94%;height:100%;background:#fbbf24;border-radius:4px;"></div></div>
+                                        <span style="width:30px;text-align:right;">4.7</span>
+                                    </div>
+                                    <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;font-size:13px;">
+                                        <span style="width:50px;">温度</span>
+                                        <div style="flex:1;height:8px;background:var(--gray-100);border-radius:4px;overflow:hidden;"><div style="width:90%;height:100%;background:#fbbf24;border-radius:4px;"></div></div>
+                                        <span style="width:30px;text-align:right;">4.5</span>
+                                    </div>
+                                    <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;font-size:13px;">
+                                        <span style="width:50px;">卫生</span>
+                                        <div style="flex:1;height:8px;background:var(--gray-100);border-radius:4px;overflow:hidden;"><div style="width:96%;height:100%;background:#fbbf24;border-radius:4px;"></div></div>
+                                        <span style="width:30px;text-align:right;">4.8</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="padding:12px;background:var(--gray-50);border-radius:8px;">
+                                <div style="font-size:13px;font-weight:500;margin-bottom:8px;">💬 最新评价</div>
+                                <div style="font-size:13px;color:var(--gray-600);line-height:1.6;">
+                                    "菜品种类丰富，孩子很喜欢吃红烧鸡腿，但建议增加一些水果。" — 三年级二班家长
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

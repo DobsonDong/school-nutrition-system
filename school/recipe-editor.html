@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>周食谱智能编排 - 中小学带量食谱系统</title>
+    <link rel="stylesheet" href="../shared/css/common.css">
+</head>
+<body>
+    <div class="layout">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <div class="logo-icon">🍱</div>
+                    <div>
+                        <div class="logo-text">智慧营养膳食平台</div>
+                        <div class="logo-subtext">学校端 - 实验小学</div>
+                    </div>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <div class="nav-section-title">食谱管理</div>
+                    <a href="recipe-editor.html" class="nav-item active"><span class="nav-item-icon">📅</span>周食谱编排</a>
+                    <a href="dish-library.html" class="nav-item"><span class="nav-item-icon">🥗</span>校本菜肴库</a>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-title">营养分析</div>
+                    <a href="nutrition-analysis.html" class="nav-item"><span class="nav-item-icon">📊</span>营养分析报表</a>
+                    <a href="student-profile.html" class="nav-item"><span class="nav-item-icon">👨‍🎓</span>学生营养档案</a>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-title">数据看板</div>
+                    <a href="dashboard.html" class="nav-item"><span class="nav-item-icon">📈</span>校级数据看板</a>
+                </div>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="top-header">
+                <div class="header-left">
+                    <div class="breadcrumb">
+                        <a href="dashboard.html">首页</a>
+                        <span class="breadcrumb-separator">/</span>
+                        <span>周食谱编排</span>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <button class="header-btn">🔔</button>
+                    <div class="user-menu">
+                        <div class="user-avatar">李</div>
+                        <div class="user-info">
+                            <div class="user-name">李管理员</div>
+                            <div class="user-role">实验小学食堂</div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="page-content">
+                <div class="page-header">
+                    <div style="display:flex;justify-content:space-between;align-items:center;">
+                        <div>
+                            <h1 class="page-title">周食谱智能编排</h1>
+                            <p class="page-subtitle">2024年1月15日 - 1月19日（第3周）</p>
+                        </div>
+                        <div style="display:flex;gap:12px;">
+                            <button class="btn btn-secondary">🤖 AI智能编排</button>
+                            <button class="btn btn-primary">💾 保存食谱</button>
+                            <button class="btn btn-success">📤 提交审核</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-5" style="margin-bottom:24px;">
+                    <div class="stat-card">
+                        <div class="stat-icon blue">🔥</div>
+                        <div class="stat-content">
+                            <div class="stat-label">平均能量</div>
+                            <div class="stat-value">685</div>
+                            <div class="stat-change"><span>kcal/餐</span></div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon green">💪</div>
+                        <div class="stat-content">
+                            <div class="stat-label">平均蛋白质</div>
+                            <div class="stat-value">28.5</div>
+                            <div class="stat-change"><span>g/餐</span></div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon orange">🥑</div>
+                        <div class="stat-content">
+                            <div class="stat-label">脂肪占比</div>
+                            <div class="stat-value">28%</div>
+                            <div class="stat-change"><span>标准范围</span></div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon purple">🌾</div>
+                        <div class="stat-content">
+                            <div class="stat-label">碳水占比</div>
+                            <div class="stat-value">55%</div>
+                            <div class="stat-change"><span>标准范围</span></div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background:#dbeafe;">✅</div>
+                        <div class="stat-content">
+                            <div class="stat-label">营养达标</div>
+                            <div class="stat-value" style="color:#22c55e;">95%</div>
+                            <div class="stat-change up"><span>↑</span><span>综合评分</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" style="margin-bottom:24px;">
+                    <div class="card-body" style="padding:12px;">
+                        <div style="display:flex;gap:12px;align-items:center;">
+                            <span style="font-weight:500;">编排条件:</span>
+                            <select class="form-select" style="width:120px;">
+                                <option>小学高段</option>
+                                <option>小学低段</option>
+                                <option>初中</option>
+                            </select>
+                            <select class="form-select" style="width:120px;">
+                                <option>8元餐标</option>
+                                <option>10元餐标</option>
+                                <option>12元餐标</option>
+                            </select>
+                            <label style="display:flex;align-items:center;gap:6px;font-size:13px;">
+                                <input type="checkbox" checked> 避开过敏原
+                            </label>
+                            <label style="display:flex;align-items:center;gap:6px;font-size:13px;">
+                                <input type="checkbox" checked> 食材多样性
+                            </label>
+                            <label style="display:flex;align-items:center;gap:6px;font-size:13px;">
+                                <input type="checkbox"> 清真餐
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-body" style="padding:0;">
+                        <div style="display:grid;grid-template-columns:80px repeat(5,1fr);border-bottom:1px solid #e5e7eb;">
+                            <div style="padding:16px;background:#f9fafb;font-weight:600;border-right:1px solid #e5e7eb;"></div>
+                            <div style="padding:16px;background:#f9fafb;font-weight:600;text-align:center;border-right:1px solid #e5e7eb;">
+                                <div>周一</div>
+                                <div style="font-size:12px;color:#6b7280;font-weight:400;">1月15日</div>
+                            </div>
+                            <div style="padding:16px;background:#f9fafb;font-weight:600;text-align:center;border-right:1px solid #e5e7eb;">
+                                <div>周二</div>
+                                <div style="font-size:12px;color:#6b7280;font-weight:400;">1月16日</div>
+                            </div>
+                            <div style="padding:16px;background:#f9fafb;font-weight:600;text-align:center;border-right:1px solid #e5e7eb;">
+                                <div>周三</div>
+                                <div style="font-size:12px;color:#6b7280;font-weight:400;">1月17日</div>
+                            </div>
+                            <div style="padding:16px;background:#f9fafb;font-weight:600;text-align:center;border-right:1px solid #e5e7eb;">
+                                <div>周四</div>
+                                <div style="font-size:12px;color:#6b7280;font-weight:400;">1月18日</div>
+                            </div>
+                            <div style="padding:16px;background:#f9fafb;font-weight:600;text-align:center;">
+                                <div>周五</div>
+                                <div style="font-size:12px;color:#6b7280;font-weight:400;">1月19日</div>
+                            </div>
+                        </div>
+
+                        <div style="display:grid;grid-template-columns:80px repeat(5,1fr);border-bottom:1px solid #e5e7eb;">
+                            <div style="padding:16px;background:#fef3c7;display:flex;align-items:center;justify-content:center;font-weight:600;border-right:1px solid #e5e7eb;">主食</div>
+                            <div style="padding:12px;border-right:1px solid #e5e7eb;">
+                                <div style="background:#f3f4f6;border-radius:8px;padding:12px;text-align:center;">
+                                    <div style="font-size:20px;margin-bottom:4px;">🍚</div>
+                                    <div style="font-weight:500;font-size:13px;">杂粮饭</div>
+                                    <div style="font-size:11px;color:#6b7280;">150g</div>
+                                </div>
+                            </div>
+                            <div style="padding:12px;border-right:1px solid #e5e7eb;">
+                                <div style="background:#f3f4f6;border-radius:8px;padding:12px;text-align:center;">
+                                    <div style="font-size:20px;margin-bottom:4px;">🍚</div>
+                                    <div style="font-weight:500;font-size:13px;">白米饭</div>
+                                    <div style="font-size:11px;color:#6b7280;">150g</div>
+                                </div>
+                            </div>
+                            <div style="padding:12px;border-right:1px solid #e5e7eb;">
+                                <div style="background:#f3f4f6;border-radius:8px;padding:12px;text-align:center;">
+                                    <div style="font-size:20px;margin-bottom:4px;">🍜</div>
+                                    <div style="font-weight:500;font-size:13px;">荞麦面</div>
+                                    <div style="font-size:11px;color:#6b7280;">120g</div>
+                                </div>
+                            </div>
+                            <div style="padding:12px;border-right:1px solid #e5e7eb;">
+                                <div style="background:#f3f4f6;border-radius:8px;padding:12px;text-align:center;">
+                                    <div style="font-size:20px;margin-bottom:4px;">🍚</div>
+                                    <div style="font-weight:500;font-size:13px;">杂粮饭</div>
+                                    <div style="font-size:11px;color:#6b7280;">150g</div>
+                                </div>
+                            </div>
+                            <div style="padding:12px;">
+                                <div style="background:#f3f4f6;border-radius:8px;padding:12px;text-align:center;">
+                                    <div style="font-size:20px;margin-bottom:4px;">🍚</div>
+                                    <div style="font-weight:500;font-size:13px;">二米饭</div>
+                                    <div style="font-size:11px;color:#6b7280;">150g</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="display:grid;grid-template-columns:80px repeat(5,1fr);border-bottom:1px solid #e5e7eb;">
+                            <div style="padding:16px;background:#fee2e2;display:flex;align-items:center;justify-content:center;font-weight:600;border-right:1px solid #e5e7eb;">荤菜</div>
+                            <div style="padding:12px;border-right:1px solid #e5e7eb;">
+                                <div style="background:#f3f4f6;border-radius:8px;padding:12px;text-align:center;">
+                                    <div style="font-size:20px;margin-bottom:4px;">🍗</div>
+                                    <div style="font-weight:500;font-size:13px;">红烧鸡腿</div>
+                                    <div style="font-size:11px;color:#6b7280;">120g</div>
+                                </div>
+                            </div>
+                            <div style="padding:12px;border-right:1px solid #e5e7eb;">
+                                <div style="background:#f3f4f6;border-radius:8px;padding:12px;text-align:center;">
+                                    <div style="font-size:20px;margin-bottom:4px;">🐟</div>
+                                    <div style="font-weight:500;font-size:13px;">清蒸鲈鱼</div>
+                                    <div style="font-size:11px;color:#6b7280;">100g</div>
+                                </div>
+                            </div>
+                            <div style="padding:12px;border-right:1px solid #e5e7eb;">
+                                <div style="background:#f3f4f6;border-radius:8px;padding:12px;text-align:center;">
+                                    <div style="font-size:20px;margin-bottom:4px;">🥩</div>
+                                    <div style="font-weight:500;font-size:13px;">糖醋排骨</div>
+                                    <div style="font-size:11px;color:#6b7280;">80g</div>
+                                </div>
+                            </div>
+                            <div style="padding:12px;border-right:1px solid #e5e7eb;">
+                                <div style="background:#f3f4f6;border-radius:8px;padding:12px;text-align:center;">
+                                    <div style="font-size:20px;margin-bottom:4px;">🍤</div>
+                                    <div style="font-weight:500;font-size:13px;">白灼虾</div>
+                                    <div style="font-size:11px;color:#6b7280;">80g</div>
+                                </div>
+                            </div>
+                            <div style="padding:12px;">
+                                <div style="background:#f3f4f6;border-radius:8px;padding:12px;text-align:center;">
+                                    <div style="font-size:20px;margin-bottom:4px;">🥚</div>
+                                    <div style="font-weight:500;font-size:13px;">番茄炒蛋</div>
+                                    <div style="font-size:11px;color:#6b7280;">120g</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="display:grid;grid-template-columns:80px repeat(5,1fr);border-bottom:1px solid #e5e7eb;">
+                            <div style="padding:16px;background:#d1fae5;display:flex;align-items:center;justify-content:center;font-weight:600;border-right:1px solid #e5e7eb;">素菜</div>
+                            <div style="padding:12px;border-right:1px solid #e5e7eb;">
+                                <div style="background:#f3f4f6;border-radius:8px;padding:12px;text-align:center;">
+                                    <div style="font-size:20px;margin-bottom:4px;">🥬</div>
+                                    <div style="font-weight:500;font-size:13px;">清炒时蔬</div>
+                                    <div style="font-size:11px;color:#6b7280;">100g</div>
+                                </div>
+                            </div>
+                            <div style="padding:12px;border-right:1px solid #e5e7eb;">
+                                <div style="background:#f3f4f6;border-radius:8px;padding:12px;text-align:center;">
+                                    <div style="font-size:20px;margin-bottom:4px;">🥒</div>
+                                    <div style="font-weight:500;font-size:13px;">凉拌黄瓜</div>
+                                    <div style="font-size:11px;color:#6b7280;">80g</div>
+                                </div>
+                            </div>
+                            <div style="padding:12px;border-right:1px solid #e5e7eb;">
+                                <div style="background:#f3f4f6;border-radius:8px;padding:12px;text-align:center;">
+                                    <div style="font-size:20px;margin-bottom:4px;">🥦</div>
+                                    <div style="font-weight:500;font-size:13px;">蒜蓉西兰花</div>
+                                    <div style="font-size:11px;color:#6b7280;">100g</div>
+                                </div>
+                            </div>
+                            <div style="padding:12px;border-right:1px solid #e5e7eb;">
+                                <div style="background:#f3f4f6;border-radius:8px;padding:12px;text-align:center;">
+                                    <div style="font-size:20px;margin-bottom:4px;">🍆</div>
+                                    <div style="font-weight:500;font-size:13px;">红烧茄子</div>
+                                    <div style="font-size:11px;color:#6b7280;">100g</div>
+                                </div>
+                            </div>
+                            <div style="padding:12px;">
+                                <div style="background:#f3f4f6;border-radius:8px;padding:12px;text-align:center;">
+                                    <div style="font-size:20px;margin-bottom:4px;">🥕</div>
+                                    <div style="font-weight:500;font-size:13px;">炒三丝</div>
+                                    <div style="font-size:11px;color:#6b7280;">100g</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="display:grid;grid-template-columns:80px repeat(5,1fr);">
+                            <div style="padding:16px;background:#dbeafe;display:flex;align-items:center;justify-content:center;font-weight:600;border-right:1px solid #e5e7eb;">汤羹</div>
+                            <div style="padding:12px;border-right:1px solid #e5e7eb;">
+                                <div style="background:#f3f4f6;border-radius:8px;padding:12px;text-align:center;">
+                                    <div style="font-size:20px;margin-bottom:4px;">🍲</div>
+                                    <div style="font-weight:500;font-size:13px;">紫菜蛋花汤</div>
+                                    <div style="font-size:11px;color:#6b7280;">200ml</div>
+                                </div>
+                            </div>
+                            <div style="padding:12px;border-right:1px solid #e5e7eb;">
+                                <div style="background:#f3f4f6;border-radius:8px;padding:12px;text-align:center;">
+                                    <div style="font-size:20px;margin-bottom:4px;">🍲</div>
+                                    <div style="font-weight:500;font-size:13px;">冬瓜排骨汤</div>
+                                    <div style="font-size:11px;color:#6b7280;">200ml</div>
+                                </div>
+                            </div>
+                            <div style="padding:12px;border-right:1px solid #e5e7eb;">
+                                <div style="background:#f3f4f6;border-radius:8px;padding:12px;text-align:center;">
+                                    <div style="font-size:20px;margin-bottom:4px;">🍲</div>
+                                    <div style="font-weight:500;font-size:13px;">番茄蛋汤</div>
+                                    <div style="font-size:11px;color:#6b7280;">200ml</div>
+                                </div>
+                            </div>
+                            <div style="padding:12px;border-right:1px solid #e5e7eb;">
+                                <div style="background:#f3f4f6;border-radius:8px;padding:12px;text-align:center;">
+                                    <div style="font-size:20px;margin-bottom:4px;">🍲</div>
+                                    <div style="font-weight:500;font-size:13px;">萝卜丝虾皮汤</div>
+                                    <div style="font-size:11px;color:#6b7280;">200ml</div>
+                                </div>
+                            </div>
+                            <div style="padding:12px;">
+                                <div style="background:#f3f4f6;border-radius:8px;padding:12px;text-align:center;">
+                                    <div style="font-size:20px;margin-bottom:4px;">🍲</div>
+                                    <div style="font-weight:500;font-size:13px;">青菜豆腐汤</div>
+                                    <div style="font-size:11px;color:#6b7280;">200ml</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-2">
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">📊 本周营养分析</div></div>
+                        <div class="card-body" style="padding:20px;">
+                            <div style="display:flex;flex-direction:column;gap:10px;">
+                                <div style="display:flex;align-items:center;gap:12px;">
+                                    <span style="width:60px;font-size:13px;color:#6b7280;">能量</span>
+                                    <div style="flex:1;height:14px;background:#f3f4f6;border-radius:7px;overflow:hidden;">
+                                        <div style="width:95%;height:100%;background:linear-gradient(90deg,#3b82f6,#93c5fd);border-radius:7px;"></div>
+                                    </div>
+                                    <span style="width:45px;font-size:13px;font-weight:600;text-align:right;color:#22c55e;">95%</span>
+                                </div>
+                                <div style="display:flex;align-items:center;gap:12px;">
+                                    <span style="width:60px;font-size:13px;color:#6b7280;">蛋白质</span>
+                                    <div style="flex:1;height:14px;background:#f3f4f6;border-radius:7px;overflow:hidden;">
+                                        <div style="width:98%;height:100%;background:linear-gradient(90deg,#22c55e,#86efac);border-radius:7px;"></div>
+                                    </div>
+                                    <span style="width:45px;font-size:13px;font-weight:600;text-align:right;color:#22c55e;">98%</span>
+                                </div>
+                                <div style="display:flex;align-items:center;gap:12px;">
+                                    <span style="width:60px;font-size:13px;color:#6b7280;">脂肪</span>
+                                    <div style="flex:1;height:14px;background:#f3f4f6;border-radius:7px;overflow:hidden;">
+                                        <div style="width:92%;height:100%;background:linear-gradient(90deg,#22c55e,#86efac);border-radius:7px;"></div>
+                                    </div>
+                                    <span style="width:45px;font-size:13px;font-weight:600;text-align:right;color:#22c55e;">92%</span>
+                                </div>
+                                <div style="display:flex;align-items:center;gap:12px;">
+                                    <span style="width:60px;font-size:13px;color:#6b7280;">碳水</span>
+                                    <div style="flex:1;height:14px;background:#f3f4f6;border-radius:7px;overflow:hidden;">
+                                        <div style="width:88%;height:100%;background:linear-gradient(90deg,#22c55e,#86efac);border-radius:7px;"></div>
+                                    </div>
+                                    <span style="width:45px;font-size:13px;font-weight:600;text-align:right;color:#22c55e;">88%</span>
+                                </div>
+                                <div style="display:flex;align-items:center;gap:12px;">
+                                    <span style="width:60px;font-size:13px;color:#6b7280;">钙</span>
+                                    <div style="flex:1;height:14px;background:#f3f4f6;border-radius:7px;overflow:hidden;">
+                                        <div style="width:72%;height:100%;background:linear-gradient(90deg,#f59e0b,#fcd34d);border-radius:7px;"></div>
+                                    </div>
+                                    <span style="width:45px;font-size:13px;font-weight:600;text-align:right;color:#f59e0b;">72%</span>
+                                </div>
+                                <div style="display:flex;align-items:center;gap:12px;">
+                                    <span style="width:60px;font-size:13px;color:#6b7280;">维生素</span>
+                                    <div style="flex:1;height:14px;background:#f3f4f6;border-radius:7px;overflow:hidden;">
+                                        <div style="width:85%;height:100%;background:linear-gradient(90deg,#06b6d4,#67e8f9);border-radius:7px;"></div>
+                                    </div>
+                                    <span style="width:45px;font-size:13px;font-weight:600;text-align:right;color:#22c55e;">85%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">✅ 合规性检查</div></div>
+                        <div class="card-body">
+                            <div style="display:flex;flex-direction:column;gap:12px;">
+                                <div style="display:flex;align-items:center;gap:12px;padding:12px;background:#d1fae5;border-radius:8px;">
+                                    <span style="color:#22c55e;font-size:20px;">✅</span>
+                                    <div style="flex:1;">
+                                        <div style="font-weight:500;">能量供给达标</div>
+                                        <div style="font-size:12px;color:#6b7280;">685kcal，符合标准范围</div>
+                                    </div>
+                                </div>
+                                <div style="display:flex;align-items:center;gap:12px;padding:12px;background:#d1fae5;border-radius:8px;">
+                                    <span style="color:#22c55e;font-size:20px;">✅</span>
+                                    <div style="flex:1;">
+                                        <div style="font-weight:500;">蛋白质供给达标</div>
+                                        <div style="font-size:12px;color:#6b7280;">28.5g，符合标准范围</div>
+                                    </div>
+                                </div>
+                                <div style="display:flex;align-items:center;gap:12px;padding:12px;background:#d1fae5;border-radius:8px;">
+                                    <span style="color:#22c55e;font-size:20px;">✅</span>
+                                    <div style="flex:1;">
+                                        <div style="font-weight:500;">食材多样性达标</div>
+                                        <div style="font-size:12px;color:#6b7280;">本周使用食材 32 种</div>
+                                    </div>
+                                </div>
+                                <div style="display:flex;align-items:center;gap:12px;padding:12px;background:#fef3c7;border-radius:8px;">
+                                    <span style="color:#f59e0b;font-size:20px;">⚠️</span>
+                                    <div style="flex:1;">
+                                        <div style="font-weight:500;">钙摄入略低</div>
+                                        <div style="font-size:12px;color:#6b7280;">建议增加奶制品或豆制品</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
